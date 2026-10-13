@@ -64,19 +64,6 @@ python manage.py runserver
 
 Open in your browser: <http://127.0.0.1:8000>
 
-## Environment Variables
-
-Create a `.env` file (never commit it to GitHub):
-
-```env
-DJANGO_SECRET_KEY=use_a_long_random_secret_key
-DJANGO_DEBUG=True
-DJANGO_ALLOWED_HOSTS=127.0.0.1,localhost
-EMAIL_HOST=
-EMAIL_HOST_USER=
-EMAIL_HOST_PASSWORD=
-```
-
 ## Deployment
 
 For production:
