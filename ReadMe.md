@@ -28,19 +28,14 @@ A professional website for **Hoxha Decor**, a metalwork workshop that designs, m
 Hoxha-Decor/
 ├── manage.py
 ├── requirements.txt
-├── <project_name>/            # settings.py, urls.py, wsgi.py
-└── <app_name>/
-    ├── templates/
-    │   ├── base.html
-    │   ├── index.html
-    │   ├── navbar.html
-    │   └── footer.html
-    ├── static/
-    │   ├── css/stilizimi.css
-    │   ├── js/java1.js
-    │   └── img/
-    ├── views.py
-    └── urls.py
+├── .env.example
+├── hoxhadecor_project/    # settings.py, urls.py, wsgi.py
+├── core/                  # views.py, urls.py, models.py
+├── templates/             # base.html, index.html, navbar.html, footer.html
+└── static/
+    ├── stilizimi.css
+    ├── java1.js
+    └── image/
 ```
 
 ## Getting Started
@@ -88,29 +83,21 @@ For production:
 
 1. Set `DJANGO_DEBUG=False` and configure `ALLOWED_HOSTS` with your domain
 2. Run `python manage.py collectstatic`
-3. Serve the app with `gunicorn <project_name>.wsgi`
+3. Serve the app with `gunicorn hoxhadecor_project.wsgi`
 4. Serve static files with `whitenoise` or Nginx
 5. Enable HTTPS and make sure `python manage.py check --deploy` reports no warnings
 
 Suitable platforms: Render, Railway, PythonAnywhere or a VPS.
 
-## Roadmap
-
-- [ ] Full English version of the site (Django i18n)
-- [ ] Image optimization (WebP) and lazy loading
-- [ ] Privacy Policy page and cookie banner
-- [ ] SEO: sitemap, robots.txt, Open Graph tags
-- [ ] Spam protection on the contact form
-
 ## Contact
 
 **Hoxha Decor**
- _phone_ · _email_ ·  _address_
+📞 _phone_ · ✉️ _email_ · 📍 _address_
 
 ## Author
 
 Developed by **Sara Pupriqi**
-[LinkedIn](www.linkedin.com/in/sara-pupriqi-951967432) · [GitHub](https://github.com/sarapupriqi-sys)
+[LinkedIn](https://www.linkedin.com/in/sara-pupriqi-951967432) · [GitHub](https://github.com/sarapupriqi-sys)
 
 ## License
 
