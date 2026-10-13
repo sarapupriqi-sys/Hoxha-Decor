@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Rreth Nesh — Hoxha Decor{% endblock %}
+
+{% block content %}
+<section class="container about-hero">
+  <div class="about-grid">
+
+    <div>
+      <h1 class="page-title page-title-spaced">Hekur i punuar me dorë, që nga 2013</h1>
+      <p class="about-lead">
+        Hoxha Decor është punishte artizanale në Fushë-Krujë. Punojmë metal për shtëpi dhe ambiente biznesi: porta, parmakë, shkallë, mobilje dhe ndriçues, nga artistike te industriale.
+      </p>
+      <p class="about-text">
+        Çdo punim fillon me një copë hekur të papërpunuar dhe një përmasë të vërtetë: hyrja e shtëpisë suaj, shkalla e lokalit tuaj. Nuk kemi përmasa fikse. E projektojmë, e farkëtojmë dhe e montojmë vetë, nga ideja deri te dorëzimi.
+      </p>
+      <p class="about-text">
+        Bëjmë porosi të vogla e të mëdha në të gjithë Shqipërinë, dhe realizojmë projekte edhe jashtë vendit. Nga abazhurët, kangjellat, portat dhe dritaret, te dyert e brendshme, karriget, shezlongët, tendat dhe aksesorët, çdo gjë bëhet sipas kërkesës suaj.
+      </p>
+      <div class="about-actions">
+        <a href="{% url 'punimet' %}" class="btn-gold btn-wide">Shiko punimet</a>
+        <a href="{% url 'procesi' %}" class="btn-ghost">Si punojmë</a>
+      </div>
+    </div>
+
+    <div class="about-photos">
+      <div class="frame frame-portrait about-photo-main">
+        <img src="{% static 'image/farkim-spirale.jpeg' %}" alt="Spirale hekuri e skuqur duke u formuar mbi kudhër">
+      </div>
+      <div class="about-photo-stack">
+        <div class="frame">
+          <img src="{% static 'image/farkim-flake.jpeg' %}" alt="Shufra hekuri që nxihen në zjarr" loading="lazy">
+        </div>
+        <div class="frame">
+          <img src="{% static 'image/farkim-grep.jpeg' %}" alt="Formë e farkëtuar me dorë mbi kudhër" loading="lazy">
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- FAKTET -->
+<section class="about-facts">
+  <div class="container about-facts-grid">
+        <div class="fact">
+      <p class="fact-value">Sipas porosisë</p>
+      <p class="fact-label">Çdo punim, në përmasat tuaja</p>
+    </div>
+    <div class="fact">
+      <p class="fact-value">Fushë-Krujë</p>
+      <p class="fact-label">Ku ndodhet punishtja jonë</p>
+    </div>
+    <div class="fact">
+      <p class="fact-value">Shqipëri & jashtë</p>
+      <p class="fact-label">Porosi të vogla e të mëdha, kudo</p>
+    </div>
+  </div>
+</section>
+{% endblock %}

@@ -1,0 +1,91 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Procesi — Hoxha Decor{% endblock %}
+{% block content %}
+<section class="container container-narrow process-hero">
+  <h1 class="page-title">Si punojmë</h1>
+  <p class="page-lead">
+    Nga ideja e parë deri te montimi final, çdo hap ndiqet me kujdes dhe ju e dini gjithmonë ku jemi.
+  </p>
+</section>
+
+<section class="container container-narrow process-section">
+  <div id="proc-steps" class="process-steps">
+
+    <!-- Vija që mbushet me scroll -->
+    <span class="process-track" aria-hidden="true"></span>
+    <span id="proc-line" class="process-line" aria-hidden="true"></span>
+
+    <!-- HAPI 1 -->
+    <article class="process-step">
+      <span class="proc-dot" aria-hidden="true"></span>
+      <div>
+        <span class="process-number">01</span>
+        <h2 class="process-title">Konsultimi & Vizioni</h2>
+        <p class="process-text">Dëgjojmë idetë dhe kërkesat tuaja para se të prekim hekurin.</p>
+        <ul class="process-list">
+          <li><span aria-hidden="true">—</span><span>Sillni foto reference ose përmasa.</span></li>
+          <li><span aria-hidden="true">—</span><span>Nëse nuk i keni, vijmë në vend për t'i marrë.</span></li>
+        </ul>
+      </div>
+      <div class="frame frame-story">
+        <img src="{% static 'image/llambadar-foto-referenca.jpeg' %}" alt="Foto e printuar e një llambadari, e sjellë si referencë" loading="lazy">
+      </div>
+    </article>
+
+    <!-- HAPI 2 -->
+    <article class="process-step">
+      <span class="proc-dot" aria-hidden="true"></span>
+      <div>
+        <span class="process-number">02</span>
+        <h2 class="process-title">Oferta & Zgjedhja e Materialeve</h2>
+        <p class="process-text">Ju japim një ofertë të qartë, pa befasi në fund.</p>
+        <ul class="process-list">
+          <li><span aria-hidden="true">—</span><span>Zgjedhim së bashku materialin dhe ngjyrën.</span></li>
+          <li><span aria-hidden="true">—</span><span>Synimi është rezistencë e qëndrueshmëri maksimale.</span></li>
+        </ul>
+      </div>
+      <div class="frame frame-story">
+        <img src="{% static 'image/mentesha.jpeg' %}" alt="Menteshë dhe doreza hekuri të zeza në dyer druri" loading="lazy">
+      </div>
+    </article>
+
+    <!-- HAPI 3 -->
+    <article class="process-step">
+      <span class="proc-dot" aria-hidden="true"></span>
+      <div>
+        <span class="process-number">03</span>
+        <h2 class="process-title">Farkëtimi & Përpunimi</h2>
+        <p class="process-text">Gjithçka bëhet në punishten tonë, me vëmendje ndaj çdo detaji.</p>
+        <div class="process-tags">
+          <span>Prehet</span>
+          <span>Farkëtohet</span>
+          <span>Saldohet</span>
+          <span>Lyhet</span>
+        </div>
+      </div>
+      <div class="frame frame-story">
+        <img src="{% static 'image/farkim-spirale.jpeg' %}" alt="Spirale hekuri e skuqur duke u formuar mbi kudhër" loading="lazy">
+      </div>
+    </article>
+
+    <!-- HAPI 4 -->
+    <article class="process-step">
+      <span class="proc-dot" aria-hidden="true"></span>
+      <div>
+        <span class="process-number">04</span>
+        <h2 class="process-title">Montimi & Instalimi Final</h2>
+        <p class="process-text">Punimi nuk mbaron në punishte, por kur është në vendin e tij.</p>
+        <ul class="process-list">
+          <li><span aria-hidden="true">—</span><span>E sjellim dhe e montojmë vetë çdo pjesë.</span></li>
+          <li><span aria-hidden="true">—</span><span>E kontrollojmë së bashku me ju dhe e dorëzojmë të përfunduar.</span></li>
+        </ul>
+      </div>
+      <div class="frame frame-story">
+        <img src="{% static 'image/porta3.jpeg' %}" alt="Portë metalike e ngritur me kran gjatë montimit" loading="lazy">
+      </div>
+    </article>
+
+  </div>
+</section>
+{% endblock %}

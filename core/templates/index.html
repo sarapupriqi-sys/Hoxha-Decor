@@ -1,0 +1,615 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+
+{% block title %}
+Hoxha Decor — Artizanat e Hekurit
+{% endblock %}
+
+
+{% block content %}
+
+
+<!-- HERO -->
+<section id="hero" class="hero">
+
+    <div class="hero-sticky">
+
+
+        <!-- LEFT SIDE -->
+        <div class="hero-copy">
+
+            <p id="hero-eyebrow" class="hero-eyebrow">
+
+                Punishte Metalike që nga 2013
+
+            </p>
+
+
+            <h1 id="hero-title" class="hero-title">
+
+                Hoxha
+                <br>
+
+                <span class="hero-accent">
+                    Decor
+                </span>
+
+            </h1>
+
+
+            <p id="hero-sub" class="hero-sub">
+
+                Me përvojë dhe përkushtim në punimet metalike që nga viti 2013,
+                Hoxha Decor sjell zgjidhje të personalizuara për shtëpi,
+                biznese dhe ambiente të ndryshme.
+
+                <br><br>
+
+                Nga portat dhe kangjellat elegante, te shkallët moderne,
+                parmakët dhe detajet dekorative, çdo punim realizohet me
+                kujdes, cilësi dhe vëmendje ndaj çdo detaji.
+
+                <br><br>
+
+                Ne besojmë se metali nuk është vetëm një material funksional,
+                por një element që mund të transformojë pamjen e një hapësire.
+
+                <br><br>
+
+                Na kontaktoni për të diskutuar projektin tuaj dhe së bashku
+                do ta kthejmë idenë tuaj në një punim unik dhe të qëndrueshëm.
+
+            </p>
+
+
+            <div id="hero-cta" class="hero-cta">
+
+                <a href="{% url 'punimet' %}" class="btn-gold btn-wide">
+
+                    Zbuloni Punimet Tona
+
+                </a>
+
+
+                <div class="hero-scroll">
+
+                    <span></span>
+
+                    Rrëshqit poshtë
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- RIGHT SIDE / 3D -->
+        <div class="hero-stage">
+
+            <div id="stairs-canvas-container" class="hero-canvas">
+            </div>
+
+
+            <p id="phrase-left" class="hero-phrase hero-phrase-left">
+
+                Përpunojmë hekurin me imtësi deri në detaj.
+
+            </p>
+
+
+            <p id="phrase-right" class="hero-phrase hero-phrase-right">
+
+                Çdo spirale mban firmën e artizanit.
+
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- KOLEKSIONET -->
+<section class="home-section">
+  <div class="container">
+    <div class="home-head">
+      <div class="home-head-copy">
+        <h2 class="section-title">Çfarë punojmë</h2>
+        <p class="section-text">Nga hyrja e shtëpisë te ndriçuesi mbi tavolinë, çdo punim bëhet në hekur dhe sipas jush.</p>
+      </div>
+      <a href="{% url 'punimet' %}" class="link-underline link-underline-lg">Shiko të gjitha punimet</a>
+    </div>
+
+    <div class="collection-grid">
+      <a href="{% url 'punimet' %}?kat=porta" class="card-frame collection-card">
+        <img src="{% static 'image/porta.jpeg' %}" alt="Porta metalike" loading="lazy">
+        <span class="collection-label">Porta</span>
+      </a>
+      <a href="{% url 'punimet' %}?kat=parmak" class="card-frame collection-card">
+        <img src="{% static 'image/kangjellat1.jpeg' %}" alt="Parmakë metalikë" loading="lazy">
+        <span class="collection-label">Parmakë</span>
+      </a>
+      <a href="{% url 'punimet' %}?kat=shkalle" class="card-frame collection-card">
+        <img src="{% static 'image/shkallet.jpeg' %}" alt="Shkallë spirale" loading="lazy">
+        <span class="collection-label">Shkallë Spirale</span>
+      </a>
+      <a href="{% url 'punimet' %}?kat=dritare" class="card-frame collection-card">
+        <img src="{% static 'image/dritare.jpeg' %}" alt="Grila dritaresh" loading="lazy">
+        <span class="collection-label">Dritare & Grila</span>
+      </a>
+      <a href="{% url 'punimet' %}?kat=mobilje" class="card-frame collection-card">
+        <img src="{% static 'image/karrike.jpeg' %}" alt="Mobilje metalike" loading="lazy">
+        <span class="collection-label">Mobilje</span>
+      </a>
+      <a href="{% url 'punimet' %}?kat=ndricues" class="card-frame collection-card">
+        <img src="{% static 'image/ndricues.jpeg' %}" alt="Ndriçues metalikë" loading="lazy">
+        <span class="collection-label">Ndriçues</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- POROSI: MADHËSIA, VENDI, LLOJET -->
+<section class="container reach-section">
+  <div class="reach-grid">
+    <div>
+      <h2 class="section-title">Porosi të vogla dhe të mëdha, në të gjithë vendin</h2>
+      <p class="reach-lead">
+        Një portë për shtëpinë apo një seri e plotë për një lokal, hotel ose resort: i marrim përsipër që të dyja. Punojmë në të gjithë Shqipërinë dhe çdo punim bëhet sipas përmasave tuaja.
+      </p>
+      <ul class="reach-points">
+        <li><span><strong>Çdo përmasë.</strong> Nga një detaj i vogël deri te projekte të plota me sasi të mëdha.</span></li>
+        <li><span><strong>Kudo në Shqipëri.</strong> Vijmë në vend për përmasat dhe e montojmë vetë punimin.</span></li>
+        <li><span><strong>Nga projektimi te dorëzimi.</strong> Një ekip i vetëm, nga ideja deri te montimi.</span></li>
+      </ul>
+    </div>
+
+    <div>
+      <h3 class="cloud-title">Çfarë mund të porosisni</h3>
+      <ul class="item-cloud">
+        <li>Abazhurë</li>
+        <li>Kangjella</li>
+        <li>Porta</li>
+        <li>Dritare & grila</li>
+        <li>Dyer të brendshme për shtëpi</li>
+        <li>Karrige</li>
+        <li>Shezlongë</li>
+        <li>Tenda</li>
+        <li>Shkallë & parmakë</li>
+        <li>Mobilje</li>
+        <li>Ndriçues</li>
+        <li class="item-more">dhe shumë aksesorë të tjerë</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- JASHTË VENDIT -->
+  <div class="abroad">
+    <div>
+      <h2 class="abroad-title">Punojmë edhe jashtë Shqipërisë</h2>
+      <p class="abroad-text">
+        Hoxha Decor realizon projekte edhe për klientë jashtë vendit. Na dërgoni idenë, fotot ose përmasat dhe ne e kthejmë në një ofertë të qartë, me të njëjtën cilësi artizanale që ofrojmë në Shqipëri.
+      </p>
+    </div>
+    <div class="abroad-side">
+      <ul class="abroad-list">
+        <li>Projektim sipas kërkesës suaj</li>
+        <li>Prodhim në punishten tonë</li>
+        <li>Koordinim i dërgesës</li>
+      </ul>
+      <a href="{% url 'contact' %}" class="btn-gold btn-wide">Kërkoni ofertë nga jashtë vendit</a>
+    </div>
+  </div>
+</section>
+
+<!-- HISTORIA (teaser) -->
+<section class="home-section">
+  <div class="container home-story">
+    <div class="frame frame-story">
+      <img src="{% static 'image/farkim-flake.jpeg' %}" alt="Shufra hekuri që nxihen në zjarr në punishte" loading="lazy">
+    </div>
+    <div>
+      <h2 class="section-title">Punishte artizanale në Fushë-Krujë, që nga 2013</h2>
+      <p class="home-story-text">
+        E projektojmë, e farkëtojmë dhe e montojmë vetë çdo punim, nga ideja deri te dorëzimi. Nuk kemi përmasa fikse: gjithçka bëhet për hapësirën tuaj.
+      </p>
+      <p>Realizojmë të gjitha llojet e saldimeve duke filluar nga përpunimi aluminit, bronxit, inoksit, bakërit dhe gizës.</p>
+      <a href="{% url 'about' %}" class="btn-ghost home-story-link">Më shumë rreth nesh</a>
+    </div>
+  </div>
+</section>
+
+
+<!-- PROCESI (përmbledhje) -->
+<section class="home-section">
+  <div class="container">
+    <h2 class="section-title">Nga ideja te montimi</h2>
+    <div class="home-process-grid">
+      <div class="home-step"><span class="home-step-number">01</span><h3 class="home-step-title">Konsultimi</h3><p class="home-step-text">Dëgjojmë idenë tuaj dhe marrim përmasat.</p></div>
+      <div class="home-step"><span class="home-step-number">02</span><h3 class="home-step-title">Materialet</h3><p class="home-step-text">Oferta e qartë, materiali dhe ngjyra së bashku.</p></div>
+      <div class="home-step"><span class="home-step-number">03</span><h3 class="home-step-title">Farkëtimi</h3><p class="home-step-text">Prehet, farkëtohet, saldohet dhe lyhet në punishte.</p></div>
+      <div class="home-step"><span class="home-step-number">04</span><h3 class="home-step-title">Montimi</h3><p class="home-step-text">E montojmë vetë dhe e dorëzojmë të përfunduar.</p></div>
+    </div>
+    <a href="{% url 'procesi' %}" class="link-underline link-underline-lg home-process-link">Shiko procesin e plotë</a>
+  </div>
+</section>
+
+<section class="home-section">
+  <div class="container">
+    <div class="why-intro">
+      <h2 class="section-title">Pse të na zgjidhni ne</h2>
+      <p class="section-text">Hekuri i mirë nuk është vetëm forcë. Është edhe përmasa e saktë, saldimi i pastër dhe montimi i bërë me kujdes.</p>
+    </div>
+
+    <div class="why-grid">
+
+      <div class="why-card">
+        <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.2" aria-hidden="true"><path d="M16 3l11 4v8c0 7-4.5 11.5-11 14C9.500 26.500 5 22 5 15V7l11-4z"/><path d="M11 16l3.500 3.500L21 12.500"/></svg>
+        <h3 class="why-card-title">Punë që zgjat</h3>
+        <p class="why-card-text">Materialin dhe ngjyrën i zgjedhim bashkë me ju për rezistencë e qëndrueshmëri maksimale, brenda dhe jashtë.</p>
+      </div>
+
+      <div class="why-card">
+        <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.2" aria-hidden="true"><path d="M4 24L24 4l4 4L8 28l-5 1 1-5z"/><path d="M20 8l4 4"/></svg>
+        <h3 class="why-card-title">Sipas kërkesës suaj</h3>
+        <p class="why-card-text">Çdo punim bëhet sipas përmasave dhe stilit tuaj. Sillni një foto ose një ide; nëse nuk keni përmasa, vijmë ne t'i marrim.</p>
+      </div>
+
+      <div class="why-card">
+        <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.2" aria-hidden="true"><path d="M6 27V13l10-9 10 9v14"/><path d="M12 27v-8h8v8"/></svg>
+        <h3 class="why-card-title">Nga punishtja në shtëpinë tuaj</h3>
+        <p class="why-card-text">Hekuri prehet, farkëtohet, saldohet dhe lyhet në punishten tonë në Fushë-Krujë. E montojmë vetë dhe e kontrollojmë bashkë me ju.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- SI FUNKSIONON -->
+<section id="funksionimi" class="container how-section">
+
+    <div class="how-grid">
+        <!-- LEFT -->
+        <div>
+
+            <h2 class="section-title how-title">
+
+                Si Funksionon
+
+            </h2>
+
+
+            <p class="how-intro">
+
+                Nga ideja e parë deri te montimi dhe instalimi final,
+                çdo hap ndiqet me kujdes absolut.
+
+            </p>
+
+
+            <div class="how-steps">
+
+
+                <!-- 01 -->
+                <div class="how-step">
+
+                    <span class="how-step-number">
+                        01
+                    </span>
+
+                    <div>
+
+                        <h3 class="how-step-title">
+                            Konsultimi & Vizioni
+                        </h3>
+
+                        <p class="how-step-text">
+                            Dëgjojmë idetë dhe kërkesat tuaja dhe
+                            diskutojmë zgjidhjen më të mirë.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <!-- 02 -->
+                <div class="how-step">
+
+                    <span class="how-step-number">
+                        02
+                    </span>
+
+                    <div>
+
+                        <h3 class="how-step-title">
+                            Zgjedhja e Materialeve
+                        </h3>
+
+                        <p class="how-step-text">
+                            Përzgjedhim materiale cilësore për
+                            rezistencë dhe qëndrueshmëri maksimale.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <!-- 03 -->
+                <div class="how-step">
+
+                    <span class="how-step-number">
+                        03
+                    </span>
+
+                    <div>
+
+                        <h3 class="how-step-title">
+                            Farkëtimi & Përpunimi
+                        </h3>
+
+                        <p class="how-step-text">
+                            Hekuri formësohet me mjeshtëri dhe
+                            vëmendje ndaj çdo detaji.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <!-- 04 -->
+                <div class="how-step">
+
+                    <span class="how-step-number">
+                        04
+                    </span>
+
+                    <div>
+
+                        <h3 class="how-step-title">
+                            Montimi & Instalimi Final
+                        </h3>
+
+                        <p class="how-step-text">
+                            Montojmë çdo pjesë me kujdes për një
+                            përfundim perfekt.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- RIGHT / MAP -->
+        <div class="how-map">
+
+            <h2 class="section-title how-title">
+
+                Na Gjeni
+
+            </h2>
+
+
+            <p class="how-address">
+
+                Rruga e, Fushë-Krujë, Shqipëri
+
+            </p>
+
+
+            <div class="map-frame">
+
+                <iframe src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d3650.866950057059!2d19.728769!3d41.478350999999996!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zNDHCsDI4JzQyLjEiTiAxOcKwNDMnNDMuNiJF!5e1!3m2!1sen!2s!4v1791660896348!5m2!1sen!2s" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="strict-origin-when-cross-origin">
+                    width="100%"
+                    height="100%"
+                    allowfullscreen=""
+                    loading="lazy">
+                </iframe>
+
+            </div>
+
+
+            <div class="how-contact">
+
+                <p>+355 68 398 0044</p>
+
+                <p>hoxhadecor@gmail.com</p>
+
+                <p>Hënë – Shtunë, 08:00 – 19:00</p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- KONTAKTI / FORMA -->
+<section id="kontakt" class="home-contact">
+
+    <div class="container container-form">
+
+        <h2 class="home-contact-title">
+
+            Dëshironi të bëni
+            <br class="desktop-break">
+            punimin tuaj?
+
+        </h2>
+
+
+        <p class="home-contact-text">
+
+            Na kontaktoni dhe le ta sjellim vizionin tuaj në hekur.
+
+        </p>
+
+
+        <form id="contact-form" method="POST" action="{% url 'contact' %}" enctype="multipart/form-data" class="home-form">
+
+            {% csrf_token %}
+
+            <!-- Emri -->
+            <div>
+
+                <label class="field-label">
+                    Emri & Mbiemri
+                </label>
+
+                <input
+                    required
+                    type="text"
+                    name="emri"
+                    class="field"
+                    placeholder="Emër Mbiemër">
+
+            </div>
+
+
+            <!-- Telefoni -->
+            <div>
+
+                <label class="field-label">
+                    Numri i Telefonit
+                </label>
+
+                <input
+                    required
+                    type="tel"
+                    name="telefoni"
+                    class="field"
+                    placeholder="+355 6X XXX XXXX">
+
+            </div>
+
+
+            <!-- Adresa -->
+            <div>
+
+                <label class="field-label">
+                    Adresa
+                </label>
+
+                <input
+                    required
+                    type="text"
+                    name="adresa"
+                    class="field"
+                    placeholder="Qyteti, rruga, nr.">
+
+            </div>
+
+
+            <!-- Lloji -->
+            <div>
+
+                <label class="field-label">
+                    Lloji i Punimit
+                </label>
+
+                <select required
+                        name="lloji"
+                        class="field">
+
+                    <option value="" disabled selected>
+                        Zgjidhni llojin e punimit
+                    </option>
+
+                    <option>Portë</option>
+                    <option>Parmak</option>
+                    <option>Kangjella</option>
+                    <option>Dritare & Grila</option>
+                    <option>Derë e brendshme</option>
+                    <option>Shkallë</option>
+                    <option>Mobilje me Porosi</option>
+                    <option>Karrige</option>
+                    <option>Shezlong</option>
+                    <option>Tendë</option>
+                    <option>Ndriçues</option>
+                    <option>Abazhur</option>
+                    <option>Aksesorë</option>
+                    <option>Porosi jashtë vendit</option>
+                    <option>Tjetër</option>
+
+                </select>
+
+            </div>
+
+
+            <!-- Mesazhi -->
+            <div class="form-wide">
+
+                <label class="field-label-caps">
+
+                    Detaje shtesë (opsionale)
+
+                </label>
+
+                <textarea
+                    name="mesazhi"
+                    rows="3"
+                    placeholder="Përshkruani shkurt idenë tuaj..."
+                    class="field"></textarea>
+
+            </div>
+
+
+            <!-- Foto -->
+            <div class="form-wide home-photo">
+
+                <label class="field-label-caps">
+
+                    Bashkangjit Foto Reference
+
+                </label>
+
+
+                <div class="home-photo-row">
+
+                    <label class="home-photo-btn">
+
+                        <span>📁 Zgjidh Foton</span>
+
+                        <input
+                            id="home-file"
+                            type="file"
+                            name="foto_reference"
+                            accept="image/*"
+                            class="home-photo-input">
+
+                    </label>
+
+
+                    <span id="file-name" class="home-file-name">
+
+                        Asnjë skedar i zgjedhur
+
+                    </span>
+
+                </div>
+
+            </div>
+
+            <div class="form-wide home-submit">
+                <button type="submit" class="btn-gold home-submit-btn">
+                    Dërgo Kërkesën
+                </button>
+            </div>
+
+        </form>
+
+    </div>
+</section>
+
+{% endblock %}

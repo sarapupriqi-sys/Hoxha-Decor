@@ -1,0 +1,331 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Punimet — Hoxha Decor{% endblock %}
+{% block content %}
+<section class="container works-hero">
+  <h1 class="page-title">Punimet Tona</h1>
+  <p class="page-lead">
+    Porosi të vogla e të mëdha, në të gjithë vendin dhe jashtë tij. Zgjidhni një kategori për të parë punimet ose kërkoni ofertë direkt.
+  </p>
+</section>
+
+<!-- FILTRAT -->
+<div class="filters-bar">
+  <div class="container filters-inner">
+    <div id="filters" class="filters-list no-scrollbar">
+      <button type="button" class="filter-btn is-active" data-f="all" aria-pressed="true">Të gjitha</button>
+      <button type="button" class="filter-btn" data-f="porta" aria-pressed="false">Porta</button>
+      <button type="button" class="filter-btn" data-f="parmak" aria-pressed="false">Parmakë</button>
+      <button type="button" class="filter-btn" data-f="shkalle" aria-pressed="false">Shkallë</button>
+      <button type="button" class="filter-btn" data-f="dritare" aria-pressed="false">Dritare & Grila</button>
+      <button type="button" class="filter-btn" data-f="mobilje" aria-pressed="false">Mobilje</button>
+      <button type="button" class="filter-btn" data-f="ndricues" aria-pressed="false">Ndriçues</button>
+      <button type="button" class="filter-btn" data-f="detaje" aria-pressed="false">Detaje</button>
+    </div>
+    <p id="result-count" class="results-count" aria-live="polite"></p>
+  </div>
+</div>
+
+{% comment %} GRIDI. Kartat "sm:col-span-2" zënë 2 kolona (foto horizontale), të tjerat 1 kolonë (foto vertikale). Nëse punimet i ke në databazë, zëvendëso <article> me një for-loop dhe mbaji të njëjtat atribute data-*. {% endcomment %}
+<section class="container works-section">
+  <div id="grid" class="works-grid">
+
+    <article class="work-card work-card-wide" data-cat="porta">
+      <button type="button" class="work-open"
+        data-title="Portë e farkëtuar me ornamente bronzi" data-cat-label="Porta" data-type="Portë"
+        data-desc="Portë me dy krahë dhe hyrje këmbësore në qendër, e punuar me hekur të zi dhe detaje floreale në ton bronzi. Bëhet sipas gjerësisë dhe stilit të hyrjes suaj."
+        data-img="{% static 'image/porta.jpeg' %}">
+        <img src="{% static 'image/porta.jpeg' %}" alt="Portë metalike e farkëtuar me ornamente bronzi" loading="lazy">
+        <span class="work-meta"><span class="work-cat">Porta</span><span class="work-title">Portë e farkëtuar me ornamente bronzi</span><span class="work-more">Shih detajet</span></span>
+      </button>
+    </article>
+
+    <article class="work-card work-card-tall" data-cat="dritare">
+      <button type="button" class="work-open"
+        data-title="Grilë dritareje e farkëtuar" data-cat-label="Dritare & Grila" data-type="Tjetër"
+        data-desc="Grilë me kurbë dhe spirale të farkëtuara me dorë, me pika bronzi në bashkime. Mbron dritaren pa e humbur artin e saj."
+        data-img="{% static 'image/dritare.jpeg' %}">
+        <img src="{% static 'image/dritare.jpeg' %}" alt="Grilë dritareje metalike me spirale të farkëtuara" loading="lazy">
+        <span class="work-meta"><span class="work-cat">Dritare & Grila</span><span class="work-title">Grilë dritareje e farkëtuar</span><span class="work-more">Shih detajet</span></span>
+      </button>
+    </article>
+
+    <article class="work-card work-card-tall" data-cat="parmak">
+      <button type="button" class="work-open"
+        data-title="Parmak shkalle me rozeta" data-cat-label="Parmakë" data-type="Parmak"
+        data-desc="Parmak me spirale dhe rozeta bronzi, me kapak dore të lëmuar. Përshtatet me gjatësinë dhe pjerrësinë e shkallës suaj."
+        data-img="{% static 'image/kangjellat1.jpeg' %}">
+        <img src="{% static 'image/kangjellat1.jpeg' %}" alt="Parmak shkalle metalik me spirale dhe rozeta" loading="lazy">
+        <span class="work-meta"><span class="work-cat">Parmakë</span><span class="work-title">Parmak shkalle me rozeta</span><span class="work-more">Shih detajet</span></span>
+      </button>
+    </article>
+
+    <article class="work-card work-card-tall" data-cat="shkalle">
+      <button type="button" class="work-open"
+        data-title="Shkallë spirale me parmak bronzi" data-cat-label="Shkallë" data-type="Shkallë"
+        data-desc="Shkallë spirale me shtyllë qendrore hekuri dhe parmak bronzi, e projektuar sipas lartësisë dhe hapësirës që keni."
+        data-img="{% static 'image/shkallet.jpeg' %}">
+        <img src="{% static 'image/shkallet.jpeg' %}" alt="Shkallë spirale metalike me parmak bronzi" loading="lazy">
+        <span class="work-meta"><span class="work-cat">Shkallë</span><span class="work-title">Shkallë spirale me parmak bronzi</span><span class="work-more">Shih detajet</span></span>
+      </button>
+    </article>
+
+    <article class="work-card work-card-tall" data-cat="mobilje">
+      <button type="button" class="work-open"
+        data-title="Karrige me shpinë zemre" data-cat-label="Mobilje" data-type="Mobilje me Porosi"
+        data-desc="Karrige metalike me shpinë të harkuar dhe spirale, ulëse me rrjetë hekuri. E përshtatshme për kopsht, tarracë ose lokal."
+        data-img="{% static 'image/karrike.jpeg' %}">
+        <img src="{% static 'image/karrike.jpeg' %}" alt="Karrige metalike me shpinë në formë zemre" loading="lazy">
+        <span class="work-meta"><span class="work-cat">Mobilje</span><span class="work-title">Karrige me shpinë zemre</span><span class="work-more">Shih detajet</span></span>
+      </button>
+    </article>
+
+    <article class="work-card work-card-wide" data-cat="mobilje">
+      <button type="button" class="work-open"
+        data-title="Stol i farkëtuar me spirale" data-cat-label="Mobilje" data-type="Mobilje me Porosi"
+        data-desc="Stol me shpinë dhe krahë të harkuar nga spirale hekuri, bashkime bronzi dhe ulëse me shtylla. Bëhet sipas gjatësisë që kërkoni."
+        data-img="{% static 'image/stoli.jpeg' %}">
+        <img src="{% static 'image/stoli.jpeg' %}" alt="Stol metalik i farkëtuar me spirale" loading="lazy">
+        <span class="work-meta"><span class="work-cat">Mobilje</span><span class="work-title">Stol i farkëtuar me spirale</span><span class="work-more">Shih detajet</span></span>
+      </button>
+    </article>
+
+    <article class="work-card work-card-tall" data-cat="ndricues">
+      <button type="button" class="work-open"
+        data-title="Aplikë muri me gjethe" data-cat-label="Ndriçues" data-type="Ndriçues"
+        data-desc="Aplikë muri me pllakë të çekiçuar dhe gjethe hekuri, që hedh një dritë të ngrohtë me hije dekorative mbi mur."
+        data-img="{% static 'image/ndricues.jpeg' %}">
+        <img src="{% static 'image/ndricues.jpeg' %}" alt="Aplikë muri metalike me gjethe që hedh hije" loading="lazy">
+        <span class="work-meta"><span class="work-cat">Ndriçues</span><span class="work-title">Aplikë muri me gjethe</span><span class="work-more">Shih detajet</span></span>
+      </button>
+    </article>
+
+    <article class="work-card work-card-wide" data-cat="ndricues">
+      <button type="button" class="work-open"
+        data-title="Llambadar tavani me lule" data-cat-label="Ndriçues" data-type="Abazhur"
+        data-desc="Llambadar tavani me degëzime hekuri, gjethe të farkëtuara dhe llamba në formë tulipani. Krijon një dritë dekorative për sallonin ose lokalin."
+        data-img="{% static 'image/ambazhur.jpeg' %}">
+        <img src="{% static 'image/ambazhur.jpeg' %}" alt="Llambadar tavani metalike me gjethe dhe lule" loading="lazy">
+        <span class="work-meta"><span class="work-cat">Ndriçues</span><span class="work-title">Llambadar tavani me lule</span><span class="work-more">Shih detajet</span></span>
+      </button>
+    </article>
+
+    <article class="work-card work-card-wide" data-cat="mobilje">
+      <button type="button" class="work-open"
+        data-title="Raft bari me hekur të çekiçuar" data-cat-label="Mobilje" data-type="Mobilje me Porosi"
+        data-desc="Raft për gota me kornizë hekuri të çekiçuar me dorë dhe shtylla të farkëtuara. Punim për bar, lokal ose bodrum."
+        data-img="{% static 'image/bar.jpeg' %}">
+        <img src="{% static 'image/bar.jpeg' %}" alt="Raft bari metalik me hekur të çekiçuar" loading="lazy">
+        <span class="work-meta"><span class="work-cat">Mobilje</span><span class="work-title">Raft bari me hekur të çekiçuar</span><span class="work-more">Shih detajet</span></span>
+      </button>
+    </article>
+
+    <article class="work-card work-card-wide" data-cat="mobilje">
+      <button type="button" class="work-open"
+        data-title="Shezllonë metalikë" data-cat-label="Mobilje" data-type="Mobilje me Porosi"
+        data-desc="Shezllonë me linja moderne dhe tuba çeliku, të qëndrueshëm ndaj ambientit të jashtëm. Për pishinë, tarracë ose kopsht."
+        data-img="{% static 'image/shezllon1.jpeg' %}">
+        <img src="{% static 'image/shezllon1.jpeg' %}" alt="Shezllonë metalikë me linja moderne" loading="lazy">
+        <span class="work-meta"><span class="work-cat">Mobilje</span><span class="work-title">Shezllonë metalikë</span><span class="work-more">Shih detajet</span></span>
+      </button>
+    </article>
+
+    <article class="work-card work-card-tall" data-cat="porta">
+      <button type="button" class="work-open"
+        data-title="Portë dykrahëshe me kurorë ornamentale" data-cat-label="Porta" data-type="Portë"
+        data-desc="Portë me dy krahë nga hekur i zi, me spirale dhe motive të farkëtuara me dorë mbi kurorë. Bëhet sipas gjerësisë dhe stilit të hyrjes suaj."
+        data-img="{% static 'image/porta-ornament.jpeg' %}">
+        <img src="{% static 'image/porta2.jpeg' %}" alt="Portë metalike dykrahëshe me spirale të farkëtuara mbi kurorë" loading="lazy">
+        <span class="work-meta"><span class="work-cat">Porta</span><span class="work-title">Portë dykrahëshe me kurorë ornamentale</span><span class="work-more">Shih detajet</span></span>
+      </button>
+    </article>
+
+    <article class="work-card work-card-tall" data-cat="porta">
+      <button type="button" class="work-open"
+        data-title="Portë me shufra dhe motive, në montim" data-cat-label="Porta" data-type="Portë"
+        data-desc="Portë metalike me shufra vertikale dhe motive dekorative, e fotografuar gjatë montimit me kran. E sjellim dhe e montojmë vetë."
+        data-img="{% static 'image/porta3.jpeg' %}">
+        <img src="{% static 'image/porta3.jpeg' %}" alt="Portë metalike që ngrihet me kran gjatë montimit" loading="lazy">
+        <span class="work-meta"><span class="work-cat">Porta</span><span class="work-title">Portë me shufra dhe motive, në montim</span><span class="work-more">Shih detajet</span></span>
+      </button>
+    </article>
+
+    <article class="work-card work-card-wide" data-cat="parmak">
+      <button type="button" class="work-open"
+        data-title="Parmak me motive lulesh" data-cat-label="Parmakë" data-type="Parmak"
+        data-desc="Parmak me spirale, gjethe dhe lule të farkëtuara, në ton të zi, për tarracë ose ballkon. Motivet përshtaten me stilin e ndërtesës."
+        data-img="{% static 'image/parmak-lule.jpeg' %}">
+        <img src="{% static 'image/parmak-lule.jpeg' %}" alt="Parmak metalik i zi me spirale dhe motive lulesh në një tarracë" loading="lazy">
+        <span class="work-meta"><span class="work-cat">Parmakë</span><span class="work-title">Parmak me motive lulesh</span><span class="work-more">Shih detajet</span></span>
+      </button>
+    </article>
+
+    <article class="work-card work-card-tall" data-cat="parmak">
+      <button type="button" class="work-open"
+        data-title="Parmakë balkoni në fasadë" data-cat-label="Parmakë" data-type="Parmak"
+        data-desc="Parmakë balkoni me spirale të farkëtuara dhe fanarë muri, të punuar sipas arkitekturës së fasadës."
+        data-img="{% static 'image/parmak-fasade.jpeg' %}">
+        <img src="{% static 'image/parmak-fasade.jpeg' %}" alt="Fasadë me kolona, parmakë balkoni dhe fanarë metalikë" loading="lazy">
+        <span class="work-meta"><span class="work-cat">Parmakë</span><span class="work-title">Parmakë balkoni në fasadë</span><span class="work-more">Shih detajet</span></span>
+      </button>
+    </article>
+
+    <article class="work-card work-card-tall" data-cat="ndricues">
+      <button type="button" class="work-open"
+        data-title="Fanarë muri në fasadë" data-cat-label="Ndriçues" data-type="Ndriçues"
+        data-desc="Fanarë me krahë të farkëtuar dhe grila hekuri në harqet e dritareve të një fasade."
+        data-img="{% static 'image/fener-muri.jpeg' %}">
+        <img src="{% static 'image/fener-muri.jpeg' %}" alt="Fanarë metalikë dhe grila dritaresh në harqe fasade" loading="lazy">
+        <span class="work-meta"><span class="work-cat">Ndriçues</span><span class="work-title">Fanarë muri në fasadë</span><span class="work-more">Shih detajet</span></span>
+      </button>
+    </article>
+
+    <article class="work-card work-card-tall" data-cat="ndricues">
+      <button type="button" class="work-open"
+        data-title="Fener muri me detaje të farkëtuara" data-cat-label="Ndriçues" data-type="Ndriçues"
+        data-desc="Fener me kornizë hekuri, gjethe dhe spirale të farkëtuara, me mbajtëse muri të punuar me dorë."
+        data-img="{% static 'image/ndricues2.jpeg' %}">
+        <img src="{% static 'image/ndricues2.jpeg' %}" alt="Fener muri metalik me gjethe dhe spirale të farkëtuara" loading="lazy">
+        <span class="work-meta"><span class="work-cat">Ndriçues</span><span class="work-title">Fener muri me detaje të farkëtuara</span><span class="work-more">Shih detajet</span></span>
+      </button>
+    </article>
+
+    <article class="work-card work-card-tall" data-cat="ndricues">
+      <button type="button" class="work-open"
+        data-title="Llambadar i madh i farkëtuar" data-cat-label="Ndriçues" data-type="Abazhur"
+        data-desc="Llambadar shumë nivelesh me gjethe, spirale dhe vende për qirinj, i punuar me dorë nga hekuri. Fotoja është nga një referencë e printuar."
+        data-img="{% static 'image/llambadar-foto-referenca.jpeg' %}">
+        <img src="{% static 'image/llambadar-foto-referenca.jpeg' %}" alt="Foto e printuar e një llambadari të madh metalik të farkëtuar" loading="lazy">
+        <span class="work-meta"><span class="work-cat">Ndriçues</span><span class="work-title">Llambadar i madh i farkëtuar</span><span class="work-more">Shih detajet</span></span>
+      </button>
+    </article>
+
+    <article class="work-card work-card-tall" data-cat="ndricues">
+      <button type="button" class="work-open"
+        data-title="Llambadar rrethor me llamba" data-cat-label="Ndriçues" data-type="Abazhur"
+        data-desc="Llambadar me unazë hekuri të çekiçuar dhe bazë për llamba, për hyrje, salla ose ambiente të mbuluara."
+        data-img="{% static 'image/llambadar-rrethor..jpeg' %}">
+        <img src="{% static 'image/llambadar-rrethor..jpeg' %}" alt="Llambadar metalik rrethor në tavan druri me llamba të ndezura" loading="lazy">
+        <span class="work-meta"><span class="work-cat">Ndriçues</span><span class="work-title">Llambadar rrethor me llamba</span><span class="work-more">Shih detajet</span></span>
+      </button>
+    </article>
+
+    <article class="work-card work-card-tall" data-cat="ndricues">
+      <button type="button" class="work-open"
+        data-title="Llambadar me spirale dhe abazhurë" data-cat-label="Ndriçues" data-type="Abazhur"
+        data-desc="Llambadar i madh me kurorë spiralesh të farkëtuara, shirita të çekiçuar dhe abazhurë të ngrohtë."
+        data-img="{% static 'image/llambadar-abazhur.jpeg' %}">
+        <img src="{% static 'image/llambadar-abazhur.jpeg' %}" alt="Llambadar i madh metalik me spirale dhe abazhurë në një lokal me gurë" loading="lazy">
+        <span class="work-meta"><span class="work-cat">Ndriçues</span><span class="work-title">Llambadar me spirale dhe abazhurë</span><span class="work-more">Shih detajet</span></span>
+      </button>
+    </article>
+
+    <article class="work-card work-card-wide" data-cat="mobilje">
+      <button type="button" class="work-open"
+        data-title="Divan i farkëtuar me spirale" data-cat-label="Mobilje" data-type="Mobilje me Porosi"
+        data-desc="Divan me shpinë dhe krahë me spirale dhe ulëse me shufra. Mund të lyhet në ngjyrën që zgjidhni."
+        data-img="{% static 'image/divan-hekuri.jpeg' %}">
+        <img src="{% static 'image/divan-hekuri.jpeg' %}" alt="Divan metalik me shpinë dhe krahë me spirale të farkëtuara" loading="lazy">
+        <span class="work-meta"><span class="work-cat">Mobilje</span><span class="work-title">Divan i farkëtuar me spirale</span><span class="work-more">Shih detajet</span></span>
+      </button>
+    </article>
+
+    <article class="work-card work-card-tall" data-cat="mobilje">
+      <button type="button" class="work-open"
+        data-title="Seri karrigesh metalike" data-cat-label="Mobilje" data-type="Mobilje me Porosi"
+        data-desc="Karrige hekuri me spirale, të ngarkuara për dërgesë. Punojmë edhe sasi të mëdha për lokale dhe ambiente biznesi."
+        data-img="{% static 'image/karrige-seri.jpeg' %}">
+        <img src="{% static 'image/karrige-seri.jpeg' %}" alt="Kamion i ngarkuar me karrige metalike me spirale" loading="lazy">
+        <span class="work-meta"><span class="work-cat">Mobilje</span><span class="work-title">Seri karrigesh metalike</span><span class="work-more">Shih detajet</span></span>
+      </button>
+    </article>
+
+    <article class="work-card work-card-tall" data-cat="mobilje">
+      <button type="button" class="work-open"
+        data-title="Karrige metalike" data-cat-label="Mobilje" data-type="Mobilje me Porosi"
+        data-desc="Karrige me dizajn modern dhe minimalist, që kombinon strukturën prej hekuri të punuar me elegancën e linjave të lakuara. Ulësja me teksturë metalike i jep çdo hapësire një pamje unike, industriale dhe stiloze."
+        data-img="{% static 'image/karrige2.jpeg' %}">
+        <img src="{% static 'image/karrige2.jpeg' %}" alt="Karrige metalike moderne me linja të lakuara" loading="lazy">
+        <span class="work-meta"><span class="work-cat">Mobilje</span><span class="work-title">Karrige metalike</span><span class="work-more">Shih detajet</span></span>
+      </button>
+    </article>
+
+    <article class="work-card work-card-wide" data-cat="detaje">
+      <button type="button" class="work-open"
+        data-title="Doreza dhe unaza të farkëtuara" data-cat-label="Detaje" data-type="Tjetër"
+        data-desc="Doreza me disk të prerë dhe unaza me teksturë të farkëtuar me dorë, për porta dhe dyer."
+        data-img="{% static 'image/mentesha.jpeg' %}">
+        <img src="{% static 'image/mentesha.jpeg' %}" alt="Doreza dhe unaza hekuri me teksturë të çekiçuar" loading="lazy">
+        <span class="work-meta"><span class="work-cat">Detaje</span><span class="work-title">Doreza dhe unaza të farkëtuara</span><span class="work-more">Shih detajet</span></span>
+      </button>
+    </article>
+
+    <article class="work-card work-card-tall" data-cat="detaje">
+      <button type="button" class="work-open"
+        data-title="Menteshë dhe doreza për dyer druri" data-cat-label="Detaje" data-type="Tjetër"
+        data-desc="Menteshë, shul dhe dorezë të farkëtuara me dorë, me kokë gozhdash, për dyer druri me porosi."
+        data-img="{% static 'image/doreza-unaza.jpeg' %}">
+        <img src="{% static 'image/doreza-unaza.jpeg' %}" alt="Dyer druri me menteshë, shul dhe dorezë metalike të zeza" loading="lazy">
+        <span class="work-meta"><span class="work-cat">Detaje</span><span class="work-title">Menteshë dhe doreza për dyer druri</span><span class="work-more">Shih detajet</span></span>
+      </button>
+    </article>
+
+  </div>
+</section>
+
+<section class="container video-section">
+  <div class="video-head">
+    <h2 class="section-title">Punë në video</h2>
+    <p class="section-text">Disa punime të montuara në vend, të filmuara nga ne.</p>
+  </div>
+  <div class="video-grid">
+    <figure class="video-card">
+      <video class="video-player" controls muted playsinline preload="metadata" poster="{% static 'image/poster-shkalle-parmak.jpeg' %}">
+        <source src="{% static 'image/parmak-shkalle.mp4' %}" type="video/mp4">
+      </video>
+      <figcaption class="video-caption">Parmak shkalle në ambient të brendshëm</figcaption>
+    </figure>
+    <figure class="video-card">
+      <video class="video-player" controls muted playsinline preload="metadata" poster="{% static 'image/poster-parmak-tarrace.jpeg' %}">
+        <source src="{% static 'image/parmak-tarrace.mp4' %}" type="video/mp4">
+      </video>
+      <figcaption class="video-caption">Parmak rreth një tarrace</figcaption>
+    </figure>
+    <figure class="video-card">
+      <video class="video-player" controls muted playsinline preload="metadata" poster="{% static 'image/poster-parmak-rampe.jpeg' %}">
+        <source src="{% static 'image/parmak-rampe.mp4' %}" type="video/mp4">
+      </video>
+      <figcaption class="video-caption">Parmak me lule në një rampë</figcaption>
+    </figure>
+    <figure class="video-card">
+      <video class="video-player" controls muted playsinline preload="metadata" poster="{% static 'image/poster-grile-detaj.jpeg' %}">
+        <source src="{% static 'image/grile-detaj.mp4' %}" type="video/mp4">
+      </video>
+      <figcaption class="video-caption">Detaj grile me spirale dhe rozetë</figcaption>
+    </figure>
+  </div>
+</section>
+
+<!-- LIGHTBOX (detajet e punimit pa ngarkuar faqe tjetër) -->
+<div id="lightbox" class="lightbox hidden"
+     role="dialog" aria-modal="true" aria-labelledby="lb-title">
+  <div class="lightbox-panel">
+    <div class="lightbox-media">
+      <img id="lb-img" src="" alt="">
+      <button type="button" id="lb-prev" class="lightbox-nav lightbox-prev" aria-label="Punimi i mëparshëm">‹</button>
+      <button type="button" id="lb-next" class="lightbox-nav lightbox-next" aria-label="Punimi tjetër">›</button>
+    </div>
+    <div class="lightbox-info">
+      <p id="lb-cat" class="lightbox-cat"></p>
+      <h2 id="lb-title" class="lightbox-title"></h2>
+      <p id="lb-desc" class="lightbox-desc"></p>
+      <p class="lightbox-note">Ky është një shembull. Çdo punim ndërtohet sipas përmasave dhe stilit tuaj.</p>
+      <div class="lightbox-actions">
+        <button type="button" id="lb-offer" class="btn-gold lightbox-btn">Kërko ofertë për këtë punim</button>
+        <a href="{% url 'contact' %}" class="lightbox-link">Dërgo foto reference</a>
+      </div>
+    </div>
+    <button type="button" id="lb-close" class="lightbox-close" aria-label="Mbyll">✕</button>
+  </div>
+</div>
+{% endblock %}

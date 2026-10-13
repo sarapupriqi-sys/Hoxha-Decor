@@ -1,0 +1,141 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Kontakt & Ofertë — Hoxha Decor{% endblock %}
+{% block content %}
+<section class="container contact-section">
+
+  <div class="contact-intro">
+    <h1 class="page-title page-title-spaced">Dëshironi të bëni punimin tuaj?</h1>
+    <p class="contact-lead">
+      Na tregoni çfarë ju nevojitet dhe ku ndodhet. Ju kthejmë përgjigje me çmim.
+    </p>
+  </div>
+
+  <div class="contact-grid">
+
+    <!-- ANA E MAJTË: informacion -->
+    <aside class="contact-info">
+
+      <div>
+        <h2 class="contact-heading">Na gjeni direkt</h2>
+        <ul class="contact-list">
+          <li><a href="https://wa.me/355683980044" target="_blank" rel="noopener">WhatsApp</a></li>
+          <li><a href="https://www.tiktok.com/@saldime.tig" target="_blank" rel="noopener">TikTok @hoxhadecor</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h2 class="contact-heading">Punishtja</h2>
+        <p class="contact-address">Fushë-Krujë, Shqipëri</p>
+        <a href="https://www.google.com/maps/search/?api=1&query=Hoxha+Decor+Fushë-Krujë" target="_blank" rel="noopener"
+           class="link-underline contact-map-link">Hape në Google Maps</a>
+        {# Për hartë të ngulitur: Google Maps > Share > Embed a map, dhe ngjite <iframe> këtu me class="w-full h-56 mt-5 border border-gold/20" loading="lazy" #}
+      </div>
+
+      <div>
+        <h2 class="contact-heading">Çfarë ndodh pas kërkesës</h2>
+        <ol class="contact-steps">
+          <li><span>1.</span><span>E shohim kërkesën dhe fotot që dërgoni.</span></li>
+          <li><span>2.</span><span>Nëse nuk keni përmasa, vijmë në vend t'i marrim.</span></li>
+          <li><span>3.</span><span>Ju japim një ofertë të qartë.</span></li>
+        </ol>
+      </div>
+    </aside>
+
+    <!-- ANA E DJATHTË: formulari -->
+    <div class="contact-card">
+
+      {% if messages %}
+        {% for m in messages %}
+        <p role="status" class="contact-message">{{ m }}</p>
+        {% endfor %}
+      {% endif %}
+
+      <form id="kontakt-forma" method="post" enctype="multipart/form-data" class="contact-form">
+        {% csrf_token %}
+
+        <!-- Honeypot kundër spam-it (njerëzit nuk e shohin) -->
+        <div class="honeypot" aria-hidden="true">
+          <label>Mos e plotësoni <input type="text" name="website" tabindex="-1" autocomplete="off"></label>
+        </div>
+
+        <div>
+          <label for="f-emri" class="field-label">Emri & Mbiemri</label>
+          <input id="f-emri" required type="text" name="emri" autocomplete="name" class="field" placeholder="Emër Mbiemër">
+        </div>
+
+        <div>
+          <label for="f-tel" class="field-label">Numri i telefonit</label>
+          <input id="f-tel" required type="tel" name="telefoni" autocomplete="tel" class="field" placeholder="+355 6X XXX XXXX">
+        </div>
+
+        <div>
+          <label for="f-lloji" class="field-label">Lloji i punimit</label>
+          <select id="f-lloji" required name="lloji" class="field">
+            <option value="" disabled selected>Zgjidhni llojin e punimit</option>
+            <option>Portë</option><option>Parmak</option><option>Kangjella</option><option>Dritare & Grila</option><option>Derë e brendshme</option><option>Shkallë</option>
+            <option>Mobilje me Porosi</option><option>Karrige</option><option>Shezlong</option><option>Tendë</option><option>Ndriçues</option><option>Abazhur</option><option>Aksesorë</option><option>Porosi jashtë vendit</option><option>Tjetër</option>
+          </select>
+        </div>
+
+        <div>
+          <label for="f-email" class="field-label">Email (opsionale)</label>
+          <input id="f-email" type="email" name="email" autocomplete="email" class="field" placeholder="emri@email.com">
+        </div>
+
+        <!-- VENDNDODHJA -->
+        <div>
+          <label for="f-qyteti" class="field-label">Qyteti</label>
+          <input id="f-qyteti" required type="text" name="qyteti" list="qytetet" autocomplete="address-level2" class="field" placeholder="P.sh. Tiranë">
+          <datalist id="qytetet">
+            <option value="Fushë-Krujë"><option value="Krujë"><option value="Tiranë"><option value="Durrës">
+            <option value="Laç"><option value="Lezhë"><option value="Shkodër"><option value="Vlorë">
+            <option value="Elbasan"><option value="Fier"><option value="Korçë"><option value="Gjirokastër"><option value="Tjetër qytet / jashtë vendit">
+          </datalist>
+        </div>
+
+        <div>
+          <label for="f-adresa" class="field-label">Zona ose adresa</label>
+          <input id="f-adresa" required type="text" name="adresa" autocomplete="street-address" class="field" placeholder="Rruga, lagjja, pika referimi">
+        </div>
+
+        <div class="form-wide contact-geo">
+          <button type="button" id="geo-btn" class="btn-small">Përdor vendndodhjen time</button>
+          <span id="geo-out" class="geo-out" role="status"></span>
+          <p class="field-hint">Opsionale. Përdoret vetëm që të dimë ku të vijmë për përmasat.</p>
+          <input type="hidden" name="lat" id="f-lat">
+          <input type="hidden" name="lng" id="f-lng">
+        </div>
+
+        <div class="form-wide">
+          <label for="f-permasat" class="field-label">Përmasat (opsionale)</label>
+          <input id="f-permasat" type="text" name="permasat" class="field" placeholder="P.sh. hyrje 3.2 m gjerësi, shkallë 3 m lartësi">
+        </div>
+
+        <div class="form-wide">
+          <label for="f-mesazhi" class="field-label">Detaje shtesë (opsionale)</label>
+          <textarea id="f-mesazhi" name="mesazhi" rows="3" class="field" placeholder="Përshkruani shkurt idenë tuaj"></textarea>
+        </div>
+
+        <!-- FOTO REFERENCE -->
+        <div class="form-wide">
+          <p class="photo-label">Foto reference (opsionale, deri në 5 foto)</p>
+          <label id="dropzone" class="dropzone">
+            <span class="dropzone-main">Zgjidhni foto ose tërhiqni ato këtu</span>
+            <span class="dropzone-sub">JPG, PNG ose WebP, deri në 8 MB secila</span>
+            <input id="f-foto" type="file" name="foto_reference" accept="image/*" multiple class="dropzone-input">
+          </label>
+          <ul id="foto-list" class="photo-list"></ul>
+          <p id="foto-err" class="photo-error" role="alert"></p>
+        </div>
+
+        <div class="form-wide form-actions">
+          <button type="submit" id="submit-btn" class="btn-gold btn-wide">Dërgo kërkesën</button>
+          <button type="button" id="wa-btn" class="btn-ghost">Dërgo në WhatsApp</button>
+        </div>
+        <p class="form-wide form-note">Fotot dërgohen vetëm me butonin "Dërgo kërkesën". WhatsApp merr vetëm tekstin.</p>
+      </form>
+    </div>
+  </div>
+</section>
+{% endblock %}

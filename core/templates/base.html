@@ -1,0 +1,101 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="sq">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>
+        {% block title %}
+        Hoxha Decor — Artizanat e Hekurit
+        {% endblock %}
+    </title>
+
+    <meta name="description" content="Hoxha Decor — porta, kangjella, dritare, shkallë, mobilje, ndriçues dhe aksesorë metalikë me porosi, në të gjithë Shqipërinë dhe jashtë vendit.">
+    <!-- ikona -->
+     <link rel="icon" href="{% static 'image/ikona.png' %}">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400&family=Jost:wght@200;300;400;500;600&display=swap" rel="stylesheet">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="{% static 'stilizimi.css' %}">
+
+
+    {% block extra_css %}
+    {% endblock %}
+</head>
+
+<body>
+
+    <!-- Widget i fshehur i Google Translate (Bën përkthimin në sfond) -->
+    <div id="google_translate_element" class="translate-widget"></div>
+
+    <!-- Background effects -->
+    <div class="ambient">
+        <span class="b1"></span>
+        <span class="b2"></span>
+        <span class="b3"></span>
+    </div>
+
+    <div class="grain"></div>
+
+    <!-- NAVBAR -->
+    {% include "navbar.html" %}
+
+    <!-- PAGE CONTENT -->
+    {% block content %}
+    {% endblock %}
+
+    <!-- FOOTER -->
+    {% include "footer.html" %}
+
+    <!-- MODALI I OFERTËS -->
+    <div id="offerModal" class="offer-modal hidden">
+      <div class="offer-box">
+        <button type="button" class="offer-close" data-close-offer aria-label="Mbyll">✕</button>
+
+        <h2 class="offer-title">Kërko Ofertë</h2>
+        <p class="offer-text">Na thoni çfarë ju nevojitet dhe ju kthejmë përgjigje me çmim.</p>
+
+        <form id="offerForm" class="offer-form">
+          <input required name="emri" type="text" class="field" placeholder="Emri & Mbiemri">
+          <input required name="telefoni" type="tel" class="field" placeholder="+355 6X XXX XXXX">
+          <select required id="offerType" name="lloji" class="field">
+            <option value="" disabled selected>Lloji i punimit</option>
+            <option>Portë</option><option>Parmak</option><option>Kangjella</option><option>Dritare & Grila</option><option>Derë e brendshme</option><option>Shkallë</option>
+            <option>Mobilje me Porosi</option><option>Karrige</option><option>Shezlong</option><option>Tendë</option><option>Ndriçues</option><option>Abazhur</option><option>Aksesorë</option><option>Porosi jashtë vendit</option><option>Tjetër</option>
+          </select>
+          <textarea name="detaje" rows="3" class="field" placeholder="Përmasat ose idea juaj (opsionale)"></textarea>
+          <button type="submit" class="btn-gold btn-block">Dërgo kërkesën</button>
+        </form>
+
+        <div id="offerSuccess" class="offer-success hidden">
+          <p class="offer-success-title">Faleminderit!</p>
+          <p class="offer-success-text">Kërkesa u hap në WhatsApp. Shtypni "Dërgo" atje që të na arrijë.</p>
+          <button type="button" class="offer-success-close" data-close-offer>Mbyll</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Three.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+
+    <!-- GSAP -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+
+    <!-- ScrollTrigger -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+    <!-- Main JavaScript (përmban edhe inicializimin e Google Translate, prandaj vjen para element.js) -->
+    <script src="{% static 'java1.js' %}"></script>
+
+    <!-- Skripti zyrtar i Google Translate -->
+    <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+</body>
+</html>

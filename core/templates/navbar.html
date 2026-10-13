@@ -1,0 +1,117 @@
+{% load static %}
+<!-- NAVBAR -->
+<header id="site-nav" class="site-nav">
+  <div id="nav-topbar" class="nav-topbar">
+    <div class="nav-topbar-inner">
+      <span>Fushë-Krujë, Shqipëri</span>
+      <div class="nav-topbar-links">
+        <!-- Numri sipas WhatsApp-it në java1.js. Ndryshoje nëse duhet -->
+        <a href="tel:+355683980044">+355 68 398 0044</a>
+        <a href="https://wa.me/355683980044" target="_blank" rel="noopener">WhatsApp</a>
+        <a href="https://www.tiktok.com/@saldime.tig" target="_blank" rel="noopener">TikTok</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="container nav-bar">
+
+    <a href="{% url 'home' %}" translate="no" class="notranslate nav-logo"><img width="30px" src="{% static 'image/ikona.png' %}" alt="">
+      Hoxha <span>Decor</span>
+    </a>
+
+    <!-- MENUJA KRYESORE (desktop) -->
+    <nav class="nav-menu" aria-label="Menuja kryesore">
+      <a href="{% url 'home' %}" class="nav-link {% if request.resolver_match.url_name == 'home' %}is-active{% endif %}">Kryefaqja</a>
+      <a href="{% url 'about' %}" class="nav-link {% if request.resolver_match.url_name == 'about' %}is-active{% endif %}">Rreth Nesh</a>
+
+      <!-- Punimet + dropdown -->
+      <div class="nav-dropdown" data-dropdown>
+        <a href="{% url 'punimet' %}" class="nav-link nav-link-dropdown {% if request.resolver_match.url_name == 'punimet' %}is-active{% endif %}" aria-haspopup="true">
+          Punimet
+          <svg class="nav-caret" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M2 4.5l4 4 4-4"/></svg>
+        </a>
+
+        <div class="mega">
+          <div class="mega-panel">
+
+            <ul class="mega-list">
+              <li><a href="{% url 'punimet' %}?kat=porta" class="mega-item"><img src="{% static 'image/porta-ornament.jpeg' %}" alt="" loading="lazy"><span>Porta</span></a></li>
+              <li><a href="{% url 'punimet' %}?kat=parmak" class="mega-item"><img src="{% static 'image/kangjellat1.jpeg' %}" alt="" loading="lazy"><span>Parmakë</span></a></li>
+              <li><a href="{% url 'punimet' %}?kat=shkalle" class="mega-item"><img src="{% static 'image/shkallet.jpeg' %}" alt="" loading="lazy"><span>Shkallë Spirale</span></a></li>
+              <li><a href="{% url 'punimet' %}?kat=dritare" class="mega-item"><img src="{% static 'image/dritare.jpeg' %}" alt="" loading="lazy"><span>Dritare & Grila</span></a></li>
+              <li><a href="{% url 'punimet' %}?kat=mobilje" class="mega-item"><img src="{% static 'image/karrike.jpeg' %}" alt="" loading="lazy"><span>Mobilje</span></a></li>
+              <li><a href="{% url 'punimet' %}?kat=ndricues" class="mega-item"><img src="{% static 'image/llambadar-rrethor.jpeg' %}" alt="" loading="lazy"><span>Ndriçues</span></a></li>
+              <li class="mega-all">
+                <a href="{% url 'punimet' %}" class="mega-all-link">Shiko të gjitha punimet</a>
+              </li>
+            </ul>
+
+            <!-- Punimi i zgjedhur -->
+            <a href="{% url 'punimet' %}?kat=shkalle" class="mega-feature">
+              <img src="{% static 'image/shkallet.jpeg' %}" alt="Shkallë spirale metalike me parmak bronzi" class="mega-feature-img" loading="lazy">
+              <span class="mega-feature-shade"></span>
+              <span class="mega-feature-text">
+                <span class="mega-feature-title">Shkallë spirale</span>
+                <span class="mega-feature-desc">Farkëtuar me porosi, sipas ambientit tuaj.</span>
+              </span>
+            </a>
+
+          </div>
+        </div>
+      </div>
+
+      <a href="{% url 'procesi' %}" class="nav-link {% if request.resolver_match.url_name == 'procesi' %}is-active{% endif %}">Procesi</a>
+      <a href="{% url 'contact' %}" class="nav-link {% if request.resolver_match.url_name == 'contact' %}is-active{% endif %}">Kontakt</a>
+    </nav>
+
+    <div class="nav-actions">
+      <button type="button" data-open-offer class="nav-offer-btn">
+        Kërko Ofertë
+      </button>
+
+      <!-- Gjuha -->
+      <div class="lang-switch notranslate" translate="no">
+        <button type="button" class="lang-btn" aria-haspopup="true">🌐 Gjuha ▼</button>
+        <div class="lang-menu">
+          <div class="lang-menu-box">
+            <a href="#" data-lang="sq" class="lang-item">🇦🇱 Shqip</a>
+            <a href="#" data-lang="en" class="lang-item">🇬🇧 English</a>
+            <a href="#" data-lang="it" class="lang-item">🇮🇹 Italiano</a>
+            <a href="#" data-lang="tr" class="lang-item">🇹🇷 Türkçe</a>
+            <a href="#" data-lang="el" class="lang-item">🇬🇷 Ελληνικά</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Butoni i menusë për telefon/tablet -->
+      <button id="menu-btn" type="button" class="menu-toggle" aria-label="Hap menunë">☰</button>
+    </div>
+  </div>
+
+  <!-- MENUJA PËR TELEFON (accordion me <details>, pa JS shtesë) -->
+  <div id="mobile-menu" class="mobile-menu hidden">
+    <a href="{% url 'home' %}" class="mobile-link">Kryefaqja</a>
+    <a href="{% url 'about' %}" class="mobile-link">Rreth Nesh</a>
+
+    <details class="mobile-group">
+      <summary class="mobile-summary">
+        Punimet
+        <span class="mobile-caret" aria-hidden="true">▾</span>
+      </summary>
+      <div class="mobile-sub">
+        <a href="{% url 'punimet' %}" class="mobile-sub-all">Të gjitha punimet</a>
+        <a href="{% url 'punimet' %}?kat=porta">Porta</a>
+        <a href="{% url 'punimet' %}?kat=parmak">Parmakë</a>
+        <a href="{% url 'punimet' %}?kat=shkalle">Shkallë Spirale</a>
+        <a href="{% url 'punimet' %}?kat=dritare">Dritare & Grila</a>
+        <a href="{% url 'punimet' %}?kat=mobilje">Mobilje</a>
+        <a href="{% url 'punimet' %}?kat=ndricues">Ndriçues</a>
+      </div>
+    </details>
+
+    <a href="{% url 'procesi' %}" class="mobile-link">Procesi</a>
+    <a href="{% url 'contact' %}" class="mobile-link mobile-link-last">Kontakt</a>
+
+    <button type="button" data-open-offer class="btn-gold btn-block mobile-offer">Kërko Ofertë</button>
+  </div>
+</header>
