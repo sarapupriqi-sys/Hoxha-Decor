@@ -2543,10 +2543,10 @@ select.field option {
   color: #fff;
 }
 .hero-fallback-bg {
+  background-image: url('image/ambazhur.jpeg');
   padding: 4rem 1rem;
   text-align: center;
   color: #fff;
-  /* Vërejtje: Nëse sfondi thirret në CSS, përdor rrugën relative të stilit */
 }
 .map-frame {
   border: 0;
