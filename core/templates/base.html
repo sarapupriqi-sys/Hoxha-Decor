@@ -14,18 +14,18 @@
     <meta property="og:type" content="website">
     <meta property="og:title" content="{% block og_title %}Hoxha Decor - Punishte Hekuri & Dekorime{% endblock %}">
     <meta property="og:description" content="{% block og_desc %}Punishte hekuri, dekorime, punime metalike dhe mobilime me dizajn unik.{% endblock %}">
-    <meta property="og:image" content="{% block og_image %}{{ request.scheme }}://{{ request.get_host }}{% static 'img/og-cover.jpg' %}{% endblock %}">
+    <meta property="og:image" content="{% block og_image %}{{ request.scheme }}://{{ request.get_host }}{% static 'image/og-cover.jpg' %}{% endblock %}">
     <meta property="og:url" content="{{ request.build_absolute_uri }}">
 
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="{% block twitter_title %}Hoxha Decor{% endblock %}">
     <meta name="twitter:description" content="{% block twitter_desc %}Punishte hekuri & dekorime.{% endblock %}">
-    <meta name="twitter:image" content="{% block twitter_image %}{{ request.scheme }}://{{ request.get_host }}{% static 'img/og-cover.jpg' %}{% endblock %}">
+    <meta name="twitter:image" content="{% block twitter_image %}{{ request.scheme }}://{{ request.get_host }}{% static 'image/og-cover.jpg' %}{% endblock %}">
 
     <!-- Favicon -->
-    <link rel="icon" type="image/x-icon" href="{% static 'img/favicon.ico' %}">
-    <link rel="apple-touch-icon" sizes="180x180" href="{% static 'img/apple-touch-icon.png' %}">
+    <link rel="icon" type="image/png" href="{% static 'image/favicon.png' %}">
+    <link rel="apple-touch-icon" sizes="180x180" href="{% static 'image/apple-touch-icon.png' %}">
 
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -37,6 +37,7 @@
 
     {% block extra_css %}
     {% endblock %}
+    <link rel="canonical" href="{{ request.scheme }}://{{ request.get_host }}{{ request.path }}">
 </head>
 
 <body>
@@ -76,21 +77,21 @@
           <input required name="telefoni" type="tel" class="field" placeholder="+355 6X XXX XXXX">
           <select required id="offerType" name="lloji" class="field">
             <option value="" disabled selected>Lloji i punimit</option>
-            <option>Portë</option>
-            <option>Parmak</option>
-            <option>Kangjella</option>
-            <option>Dritare & Grila</option>
-            <option>Derë e brendshme</option>
-            <option>Shkallë</option>
-            <option>Mobilje me Porosi</option>
-            <option>Karrige</option>
-            <option>Shezlong</option>
-            <option>Tendë</option>
-            <option>Ndriçues</option>
-            <option>Abazhur</option>
-            <option>Aksesorë</option>
-            <option>Porosi jashtë vendit</option>
-            <option>Tjetër</option>
+            <option value="Portë">Portë</option>
+            <option value="Parmak">Parmak</option>
+            <option value="Kangjella">Kangjella</option>
+            <option value="Dritare & Grila">Dritare & Grila</option>
+            <option value="Derë e brendshme">Derë e brendshme</option>
+            <option value="Shkallë">Shkallë</option>
+            <option value="Mobilje me Porosi">Mobilje me Porosi</option>
+            <option value="Karrige">Karrige</option>
+            <option value="Shezlong">Shezlong</option>
+            <option value="Tendë">Tendë</option>
+            <option value="Ndriçues">Ndriçues</option>
+            <option value="Abazhur">Abazhur</option>
+            <option value="Aksesorë">Aksesorë</option>
+            <option value="Porosi jashtë vendit">Porosi jashtë vendit</option>
+            <option value="Tjetër">Tjetër</option>
           </select>
           <textarea name="detaje" rows="3" class="field" placeholder="Përmasat ose idea juaj (opsionale)"></textarea>
           <button type="submit" class="btn-gold btn-block">Dërgo kërkesën</button>
@@ -114,7 +115,14 @@
 
     <!-- Google Translate Script -->
     <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
-
+  <!-- Butoni i lundrueshëm i WhatsApp -->
+<a href="https://wa.me/355683980044?text=Përshëndetje,%20dua%20të%20mësoj%20më shumë%20rreth%20punimeve%20tuaja." 
+   class="floating-whatsapp" 
+   target="_blank" 
+   rel="noopener" 
+   aria-label="Na shkruani në WhatsApp">
+   <i class="fab fa-whatsapp"></i>
+</a>
     {% block extra_js %}
     {% endblock %}
 

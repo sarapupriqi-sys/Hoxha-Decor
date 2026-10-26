@@ -681,3 +681,31 @@ if (nav && window.scrollY > 40) nav.classList.add('nav-scrolled');
     v.addEventListener('ended', () => { if (card) card.classList.remove('is-playing'); });
   });
 })();
+// Optimizim për animacionet e Hero-s
+const heroSection = document.querySelector('.hero'); // Zëvendëso me klasën e saktë të hero-s tënde
+let animationId = null;
+let isHeroVisible = true;
+
+function renderAnimation() {
+    if (!isHeroVisible) return;
+    
+    // Këtu vendos logjikën e animacionit tënd (p.sh. draw() ose ndonjë lëvizje)
+    
+    animationId = requestAnimationFrame(renderAnimation);
+}
+
+if (heroSection) {
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            isHeroVisible = entry.isIntersecting;
+            if (isHeroVisible) {
+                cancelAnimationFrame(animationId);
+                renderAnimation(); // Rinise kur shfaqet
+            } else {
+                cancelAnimationFrame(animationId); // Ndaloje kur del nga ekrani
+            }
+        });
+    }, { threshold: 0.1 });
+
+    observer.observe(heroSection);
+}

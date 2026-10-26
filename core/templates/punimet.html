@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block title %}Punimet — Hoxha Decor{% endblock %}
+{% block desc %}Eksploroni galerinë e punimeve metalike nga Hoxha Decor: porta, parmakë shkallësh, kangjella, dritare, grila dhe mobilje artizanale me porosi.{% endblock %}
 {% block content %}
 <section class="container works-hero">
   <h1 class="page-title">Punimet Tona</h1>
@@ -39,17 +40,15 @@
         <span class="work-meta"><span class="work-cat">Porta</span><span class="work-title">Portë e farkëtuar me ornamente bronzi</span><span class="work-more">Shih detajet</span></span>
       </button>
     </article>
-
     <article class="work-card work-card-tall" data-cat="dritare">
       <button type="button" class="work-open"
-        data-title="Grilë dritareje e farkëtuar" data-cat-label="Dritare & Grila" data-type="Tjetër"
+        data-title="Grilë dritareje e farkëtuar" data-cat-label="Dritare & Grila" data-type="Dritare & Grila"
         data-desc="Grilë me kurbë dhe spirale të farkëtuara me dorë, me pika bronzi në bashkime. Mbron dritaren pa e humbur artin e saj."
         data-img="{% static 'image/dritare.jpeg' %}">
         <img src="{% static 'image/dritare.jpeg' %}" alt="Grilë dritareje metalike me spirale të farkëtuara" loading="lazy">
         <span class="work-meta"><span class="work-cat">Dritare & Grila</span><span class="work-title">Grilë dritareje e farkëtuar</span><span class="work-more">Shih detajet</span></span>
       </button>
     </article>
-
     <article class="work-card work-card-tall" data-cat="parmak">
       <button type="button" class="work-open"
         data-title="Parmak shkalle me rozeta" data-cat-label="Parmakë" data-type="Parmak"
@@ -122,19 +121,19 @@
 
     <article class="work-card work-card-wide" data-cat="mobilje">
       <button type="button" class="work-open"
-        data-title="Shezllonë metalikë" data-cat-label="Mobilje" data-type="Mobilje me Porosi"
-        data-desc="Shezllonë me linja moderne dhe tuba çeliku, të qëndrueshëm ndaj ambientit të jashtëm. Për pishinë, tarracë ose kopsht."
+        data-title="Shezlong metalikë" data-cat-label="Mobilje" data-type="Mobilje me Porosi"
+        data-desc="Shezlong me linja moderne dhe tuba çeliku, të qëndrueshëm ndaj ambientit të jashtëm. Për pishinë, tarracë ose kopsht."
         data-img="{% static 'image/shezllon1.jpeg' %}">
-        <img src="{% static 'image/shezllon1.jpeg' %}" alt="Shezllonë metalikë me linja moderne" loading="lazy">
-        <span class="work-meta"><span class="work-cat">Mobilje</span><span class="work-title">Shezllonë metalikë</span><span class="work-more">Shih detajet</span></span>
+        <img src="{% static 'image/shezllon1.jpeg' %}" alt="Shezlong metalikë me linja moderne" loading="lazy">
+        <span class="work-meta"><span class="work-cat">Mobilje</span><span class="work-title">Shezlong metalikë</span><span class="work-more">Shih detajet</span></span>
       </button>
     </article>
 
     <article class="work-card work-card-tall" data-cat="porta">
-      <button type="button" class="work-open"
+    <button type="button" class="work-open"
         data-title="Portë dykrahëshe me kurorë ornamentale" data-cat-label="Porta" data-type="Portë"
         data-desc="Portë me dy krahë nga hekur i zi, me spirale dhe motive të farkëtuara me dorë mbi kurorë. Bëhet sipas gjerësisë dhe stilit të hyrjes suaj."
-        data-img="{% static 'image/porta-ornament.jpeg' %}">
+        data-img="{% static 'image/porta2.jpeg' %}">
         <img src="{% static 'image/porta2.jpeg' %}" alt="Portë metalike dykrahëshe me spirale të farkëtuara mbi kurorë" loading="lazy">
         <span class="work-meta"><span class="work-cat">Porta</span><span class="work-title">Portë dykrahëshe me kurorë ornamentale</span><span class="work-more">Shih detajet</span></span>
       </button>
@@ -280,25 +279,25 @@
   </div>
   <div class="video-grid">
     <figure class="video-card">
-      <video class="video-player" controls muted playsinline preload="metadata" poster="{% static 'image/poster-shkalle-parmak.jpeg' %}">
+      <video class="video-player" controls muted playsinline preload="metadata" poster="{% static 'image/poster-parmak-shkalle.png' %}">
         <source src="{% static 'image/parmak-shkalle.mp4' %}" type="video/mp4">
       </video>
       <figcaption class="video-caption">Parmak shkalle në ambient të brendshëm</figcaption>
     </figure>
     <figure class="video-card">
-      <video class="video-player" controls muted playsinline preload="metadata" poster="{% static 'image/poster-parmak-tarrace.jpeg' %}">
+      <video class="video-player" controls muted playsinline preload="metadata" poster="{% static 'image/poster-parmaktarrace.png' %}">
         <source src="{% static 'image/parmak-tarrace.mp4' %}" type="video/mp4">
       </video>
       <figcaption class="video-caption">Parmak rreth një tarrace</figcaption>
     </figure>
     <figure class="video-card">
-      <video class="video-player" controls muted playsinline preload="metadata" poster="{% static 'image/poster-parmak-rampe.jpeg' %}">
+      <video class="video-player" controls muted playsinline preload="metadata" poster="{% static 'image/poster-parmak-rampe.png' %}">
         <source src="{% static 'image/parmak-rampe.mp4' %}" type="video/mp4">
       </video>
       <figcaption class="video-caption">Parmak me lule në një rampë</figcaption>
     </figure>
     <figure class="video-card">
-      <video class="video-player" controls muted playsinline preload="metadata" poster="{% static 'image/poster-grile-detaj.jpeg' %}">
+      <video class="video-player" controls muted playsinline preload="metadata" poster="{% static 'image/poster-parmak-grile.png' %}">
         <source src="{% static 'image/grile-detaj.mp4' %}" type="video/mp4">
       </video>
       <figcaption class="video-caption">Detaj grile me spirale dhe rozetë</figcaption>

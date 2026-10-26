@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="sq">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex">
+  <title>Gabim i përkohshëm — Hoxha Decor</title>
+  <!-- Faqe e pavarur me qëllim: Django e shfaq pa kontekst, prandaj nuk përdor extends, static ose url. Kështu nuk dështon edhe vetë kur serveri ka problem. -->
+  <style>
+    :root { --ink:#211C17; --gold:#C9A24B; --gold-light:#E8D9B5; --pearl:#A9A296; }
+    * { box-sizing: border-box; }
+    html, body { height: 100%; margin: 0; }
+    body {
+      display: flex; align-items: center; justify-content: center;
+      padding: 1.5rem; background: var(--ink); color: var(--pearl);
+      font-family: 'Jost', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;
+      line-height: 1.6; -webkit-font-smoothing: antialiased;
+    }
+    main { max-width: 34rem; text-align: center; }
+    .brand { margin: 0 0 2rem; font-family: 'Fraunces', Georgia, 'Times New Roman', serif; font-size: 1.5rem; color: var(--gold-light); }
+    .brand span { color: var(--gold); }
+    h1 { margin: 0 0 1rem; font-family: 'Fraunces', Georgia, 'Times New Roman', serif; font-weight: 400; font-size: clamp(1.75rem, 6vw, 2.5rem); line-height: 1.2; color: var(--gold-light); }
+    p { margin: 0 0 2rem; }
+    .actions { display: flex; flex-wrap: wrap; gap: .75rem; justify-content: center; }
+    a { display: inline-block; padding: .8rem 1.6rem; border: 1px solid var(--gold); text-decoration: none; font-weight: 500; }
+    a.primary { background: var(--gold); color: var(--ink); }
+    a.secondary { color: var(--gold-light); }
+    a:focus-visible { outline: 2px solid var(--gold-light); outline-offset: 3px; }
+  </style>
+</head>
+<body>
+  <main>
+    <p class="brand">Hoxha <span>Decor</span></p>
+    <h1>Faqja nuk mund të shfaqet tani</h1>
+    <p>Ndodhi një gabim në server. Provoni përsëri pas pak minutash. Nëse ju duhet menjëherë, na shkruani në WhatsApp ose na telefononi.</p>
+    <div class="actions">
+      <a class="primary" href="/">Kthehu te kryefaqja</a>
+      <a class="secondary" href="https://wa.me/355683980044" rel="noopener">WhatsApp</a>
+      <a class="secondary" href="tel:+355683980044">+355 68 398 0044</a>
+    </div>
+  </main>
+</body>
+</html>

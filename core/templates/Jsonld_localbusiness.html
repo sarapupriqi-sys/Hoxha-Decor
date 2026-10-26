@@ -1,0 +1,41 @@
+{% load static %}
+{% comment %}
+  Të dhëna të strukturuara (JSON-LD) për Google. Përfshije në <head> me:
+  {% block extra_css %}{% include 'jsonld_localbusiness.html' %}{% endblock %}
+  Të konfirmosh para publikimit: orari, emaili, telefoni. "sameAs" (TikTok) është lënë jashtë
+  sepse faqja ka dy llogari të ndryshme; shtoje pasi të vendosësh njërën.
+{% endcomment %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  "@id": "{{ request.scheme }}://{{ request.get_host }}/#business",
+  "name": "Hoxha Decor",
+  "description": "Punishte artizanale hekuri në Fushë-Krujë: porta, parmakë, kangjella, shkallë, dritare, mobilje dhe ndriçues metalikë të punuar me porosi, që nga viti 2013.",
+  "url": "{{ request.scheme }}://{{ request.get_host }}/",
+  "image": "{{ request.scheme }}://{{ request.get_host }}{% static 'image/farkim-spirale.jpeg' %}",
+  "telephone": "+355683980044",
+  "email": "hoxhadecor@gmail.com",
+  "foundingDate": "2013",
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Fushë-Krujë",
+    "addressCountry": "AL"
+  },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": 41.478351,
+    "longitude": 19.728769
+  },
+  "hasMap": "https://www.google.com/maps/search/?api=1&query=Hoxha+Decor+Fushë-Krujë",
+  "areaServed": { "@type": "Country", "name": "Albania" },
+  "openingHoursSpecification": [
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+      "opens": "08:00",
+      "closes": "19:00"
+    }
+  ]
+}
+</script>

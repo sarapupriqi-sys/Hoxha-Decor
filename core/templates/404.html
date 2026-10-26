@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block title %}Faqja nuk u gjet — Hoxha Decor{% endblock %}
+{% block desc %}Faqja që kërkuat nuk ekziston ose është zhvendosur. Vazhdoni te punimet ose na kontaktoni.{% endblock %}
+{% block extra_css %}<meta name="robots" content="noindex">{% endblock %}
+
+{% block content %}
+<section class="container container-narrow process-hero">
+  <h1 class="page-title">Faqja nuk u gjet</h1>
+  <p class="page-lead">
+    Lidhja që hapët nuk ekziston ose është zhvendosur. Vazhdoni nga një prej faqeve më poshtë.
+  </p>
+  <div class="about-actions">
+    <a href="{% url 'home' %}" class="btn-gold btn-wide">Kryefaqja</a>
+    <a href="{% url 'punimet' %}" class="btn-ghost">Shiko punimet</a>
+    <a href="{% url 'contact' %}" class="btn-ghost">Kontakt</a>
+  </div>
+</section>
+{% endblock %}

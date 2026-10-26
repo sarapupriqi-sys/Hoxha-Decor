@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block title %}Kontakt & Ofertë — Hoxha Decor{% endblock %}
+{% block desc %}Na kontaktoni për porosi dhe konsulencë për punime metalike, porta dhe parmakë në Shqipëri. Drgoni kërkesën tuaj ose na shkruani në WhatsApp.{% endblock %}
 {% block content %}
 <section class="container contact-section">
 
@@ -14,21 +15,48 @@
   <div class="contact-grid">
 
     <!-- ANA E MAJTË: informacion -->
+<!-- ANA E MAJTË: Informacioni i biznesit -->
     <aside class="contact-info">
 
       <div>
-        <h2 class="contact-heading">Na gjeni direkt</h2>
+        <h2 class="contact-heading">Na kontaktoni direkt</h2>
         <ul class="contact-list">
-          <li><a href="https://wa.me/355683980044" target="_blank" rel="noopener">WhatsApp</a></li>
-          <li><a href="https://www.tiktok.com/@saldime.tig" target="_blank" rel="noopener">TikTok @hoxhadecor</a></li>
+          <li>
+            <strong>Telefon:</strong> 
+            <a href="tel:+355683980044">+355 68 398 0044</a>
+          </li>
+          <li>
+            <strong>WhatsApp:</strong> 
+            <a href="https://wa.me/355683980044" target="_blank" rel="noopener">Bisedo në WhatsApp</a>
+          </li>
+          <li>
+            <strong>Email:</strong> 
+            <a href="mailto:hoxhadecor@gmail.com">hoxhadecor@gmail.com</a>
+          </li>
+          <li>
+            <strong>TikTok:</strong> 
+            <a href="https://www.tiktok.com/@saldime.tig" target="_blank" rel="noopener">@hoxhadecor</a>
+          </li>
         </ul>
+      </div>
+
+      <div>
+        <h2 class="contact-heading">Orari i Punës</h2>
+        <p class="contact-address">
+          E Hënë – E Shtunë: 08:00 – 18:00<br>
+          E Diel: Pushim
+        </p>
       </div>
 
       <div>
         <h2 class="contact-heading">Punishtja</h2>
         <p class="contact-address">Fushë-Krujë, Shqipëri</p>
-        <a href="https://www.google.com/maps/search/?api=1&query=Hoxha+Decor+Fushë-Krujë" target="_blank" rel="noopener"
-           class="link-underline contact-map-link">Hape në Google Maps</a>
+        <a href="https://www.google.com/maps/search/?api=1&query=Hoxha+Decor+Fushë-Krujë" 
+           target="_blank" 
+           rel="noopener"
+           class="link-underline contact-map-link">
+          Hape në Google Maps
+        </a>
       </div>
 
       <div>
@@ -39,6 +67,7 @@
           <li><span>3.</span><span>Ju japim një ofertë të qartë.</span></li>
         </ol>
       </div>
+
     </aside>
 
     <!-- ANA E DJATHTË: formulari -->
@@ -72,8 +101,21 @@
           <label for="f-lloji" class="field-label">Lloji i punimit</label>
           <select id="f-lloji" required name="lloji" class="field">
             <option value="" disabled selected>Zgjidhni llojin e punimit</option>
-            <option>Portë</option><option>Parmak</option><option>Kangjella</option><option>Dritare & Grila</option><option>Derë e brendshme</option><option>Shkallë</option>
-            <option>Mobilje me Porosi</option><option>Karrige</option><option>Shezlong</option><option>Tendë</option><option>Ndriçues</option><option>Abazhur</option><option>Aksesorë</option><option>Porosi jashtë vendit</option><option>Tjetër</option>
+            <option value="Portë">Portë</option>
+            <option value="Parmak">Parmak</option>
+            <option value="Kangjella">Kangjella</option>
+            <option value="Dritare & Grila">Dritare & Grila</option>
+            <option value="Derë e brendshme">Derë e brendshme</option>
+            <option value="Shkallë">Shkallë</option>
+            <option value="Mobilje me Porosi">Mobilje me Porosi</option>
+            <option value="Karrige">Karrige</option>
+            <option value="Shezlong">Shezlong</option>
+            <option value="Tendë">Tendë</option>
+            <option value="Ndriçues">Ndriçues</option>
+            <option value="Abazhur">Abazhur</option>
+            <option value="Aksesorë">Aksesorë</option>
+            <option value="Porosi jashtë vendit">Porosi jashtë vendit</option>
+            <option value="Tjetër">Tjetër</option>
           </select>
         </div>
 
@@ -127,7 +169,9 @@
           <ul id="foto-list" class="photo-list"></ul>
           <p id="foto-err" class="photo-error" role="alert"></p>
         </div>
-
+        <p class="form-wide form-note" style="font-size: 0.9rem; color: #666; margin-bottom: 1rem;">
+         Të dhënat përdoren vetëm për t'ju kthyer përgjigje. <a href="{% url 'privatesia' %}">Lexo mbi privatësinë</a>.
+        </p>
         <div class="form-wide form-actions">
           <button type="submit" id="submit-btn" class="btn-gold btn-wide">Dërgo kërkesën</button>
           <button type="button" id="wa-btn" class="btn-ghost">Dërgo në WhatsApp</button>

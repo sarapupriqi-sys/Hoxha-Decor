@@ -1590,6 +1590,7 @@ a:focus-visible, button:focus-visible, summary:focus-visible, input:focus-visibl
   position: sticky;
   top: 0;
   height: 100vh;
+  height: 100svh;
   width: 100%;
   overflow: hidden;
   display: flex;
@@ -1600,6 +1601,10 @@ a:focus-visible, button:focus-visible, summary:focus-visible, input:focus-visibl
   .hero-sticky {
     flex-direction: row;
   }
+}
+@media (max-width: 767.98px) {
+  .hero { height: auto; }
+  .hero-sticky { position: relative; height: auto; min-height: 100svh; overflow: visible; }
 }
 .hero-copy {
   position: relative;
@@ -2197,7 +2202,9 @@ select.field option {
 .hidden {
   display: none;
 }
-
+.honeypot {
+    display: none !important;
+}
 .nav-logo img {
   display: inline-block;
   vertical-align: middle;
@@ -2502,4 +2509,36 @@ select.field option {
   content: "—";
   color: var(--gold);
   margin-right: .6rem;
+}
+/* Respekto preferencën e përdoruesit për lëvizje të reduktuara */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+.floating-whatsapp {
+  position: fixed;
+  bottom: 25px;
+  right: 25px;
+  background-color: #25d366;
+  color: #fff;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 30px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+  z-index: 1000;
+  transition: transform 0.3s ease;
+}
+.floating-whatsapp:hover {
+  transform: scale(1.1);
+  color: #fff;
 }

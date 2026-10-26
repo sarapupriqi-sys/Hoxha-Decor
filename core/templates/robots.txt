@@ -1,0 +1,6 @@
+{% autoescape off %}User-agent: *
+Allow: /
+Disallow: /admin/
+
+Sitemap: {{ sitemap_url }}
+{% endautoescape %}
