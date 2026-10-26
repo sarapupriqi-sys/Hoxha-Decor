@@ -2542,3 +2542,12 @@ select.field option {
   transform: scale(1.1);
   color: #fff;
 }
+.hero-fallback-bg {
+  padding: 4rem 1rem;
+  text-align: center;
+  color: #fff;
+  /* Vërejtje: Nëse sfondi thirret në CSS, përdor rrugën relative të stilit */
+}
+.map-frame {
+  border: 0;
+}
