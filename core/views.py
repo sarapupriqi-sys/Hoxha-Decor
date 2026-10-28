@@ -1,3 +1,5 @@
+import logging
+logger = logging.getLogger(__name__)
 from django.conf import settings
 from django.contrib import messages
 from django.core.mail import EmailMessage
@@ -38,7 +40,7 @@ def contact(request):
         messages.error(request, 'Plotësoni emrin dhe numrin e telefonit.')
         return redirect('contact')
 
-    # 1. Ruajtja në Bazën e të Dhënave (që të shfaqet në Django Admin)
+    saved = False
     try:
         MesazhKontakti.objects.create(
             emri=emri,
@@ -49,8 +51,9 @@ def contact(request):
             prmasat=request.POST.get('prmasat', '').strip(),
             mesazhi=request.POST.get('mesazhi', '').strip()
         )
+        saved = True
     except Exception:
-        pass  # Vazhdon dërgimin e emailit edhe nëse ka ndonjë anomali të vogël në DB
+        logger.exception('Ruajtja e MesazhKontakti dështoi')
 
     # 2. Përgatitja dhe Dërgimi i Email-it (kodi yt ekzistues)
     lines = [
@@ -83,7 +86,11 @@ def contact(request):
     try:
         email.send()
     except Exception:
-        messages.error(request, 'Kërkesa u ruajt, por dërgimi i emailit dështoi. Na kontaktoni në WhatsApp.')
+        logger.exception('Dërgimi i email-it dështoi')
+        if saved:
+            messages.error(request, 'Kërkesa u ruajt, por dërgimi i emailit dështoi. Na kontaktoni në WhatsApp.')
+        else:
+            messages.error(request, 'Kërkesa nuk u dërgua. Na kontaktoni në WhatsApp.')
     else:
         msg = "Faleminderit! Kërkesa u dërgua, do t'ju kthejmë përgjigje."
         if skipped > 0:

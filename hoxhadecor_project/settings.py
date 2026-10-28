@@ -11,28 +11,46 @@ https://docs.djangoproject.com/en/6.1/ref/settings/
 """
 import os
 from pathlib import Path
-from dotenv import load_dotenv  # Shto këtë
+from dotenv import load_dotenv
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
+
 # Ngarko skedarin .env
 load_dotenv()
 
 
 DEBUG = os.environ.get('DJANGO_DEBUG', '0').lower() in ('1', 'true', 'yes')
+
 SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY')
 if not SECRET_KEY:
     if DEBUG:
         SECRET_KEY = 'vetem-per-zhvillim-lokal'
     else:
         raise RuntimeError('DJANGO_SECRET_KEY mungon')
-ALLOWED_HOSTS = [h for h in os.environ.get('DJANGO_ALLOWED_HOSTS', '127.0.0.1,localhost').split(',') if h]
-CSRF_TRUSTED_ORIGINS = [o for o in os.environ.get('DJANGO_CSRF_TRUSTED_ORIGINS', '').split(',') if o]  # p.sh. https://domaini-yt.al
+
+# Listat ndahen me presje; hapësirat rreth vlerave hiqen automatikisht.
+ALLOWED_HOSTS = [
+    h.strip()
+    for h in os.environ.get('DJANGO_ALLOWED_HOSTS', '127.0.0.1,localhost').split(',')
+    if h.strip()
+]
+# p.sh. https://domaini-yt.al,https://www.domaini-yt.al
+CSRF_TRUSTED_ORIGINS = [
+    o.strip()
+    for o in os.environ.get('DJANGO_CSRF_TRUSTED_ORIGINS', '').split(',')
+    if o.strip()
+]
+
+# Siguria për prodhim (aktive vetëm kur DEBUG është i fikur)
 if not DEBUG:
     SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
     SECURE_SSL_REDIRECT = True
     SESSION_COOKIE_SECURE = True
     CSRF_COOKIE_SECURE = True
-    SECURE_HSTS_SECONDS = 3600
+    SECURE_HSTS_SECONDS = 3600  # rrite në 31536000 pasi të verifikosh që gjithçka punon me HTTPS
+
+
 # Application definition
 
 INSTALLED_APPS = [
@@ -55,6 +73,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+
 STORAGES = {
     'default': {'BACKEND': 'django.core.files.storage.FileSystemStorage'},
     'staticfiles': {'BACKEND': 'whitenoise.storage.CompressedStaticFilesStorage'},
@@ -72,6 +91,9 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                # Çaktivizo komentin vetëm pasi të krijosh core/context_processors.py
+                # (do ta vendosim në Fazën 3 nëse templates e përdorin BUSINESS_INFO):
+                # 'core.context_processors.business_info',
             ],
         },
     },
@@ -126,8 +148,12 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/6.1/howto/static-files/
 
 STATIC_URL = 'static/'
-STATIC_URL = 'static/'
 STATICFILES_DIRS = [BASE_DIR / 'static']
+STATIC_ROOT = BASE_DIR / 'staticfiles'
+
+# Media (fotot e ngarkuara nga Admin: Punim / FotoPunimi)
+MEDIA_URL = '/media/'
+MEDIA_ROOT = BASE_DIR / 'media'
 
 
 # Email
@@ -142,21 +168,26 @@ else:
     EMAIL_USE_TLS = os.environ.get('EMAIL_USE_TLS', 'True') == 'True'
     EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER', '')
     EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD', '')
+    EMAIL_TIMEOUT = 10  # mos e lër kërkesën të ngecë nëse SMTP vonon
 
 DEFAULT_FROM_EMAIL = os.environ.get('DJANGO_FROM_EMAIL', 'hoxhadecor@gmail.com')
 CONTACT_RECIPIENT = os.environ.get('DJANGO_CONTACT_RECIPIENT', 'hoxhadecor@gmail.com')
 
-STATIC_ROOT = BASE_DIR / 'staticfiles'
 
-if not DEBUG:
-    SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
-    SECURE_SSL_REDIRECT = True
-    SESSION_COOKIE_SECURE = True
-    CSRF_COOKIE_SECURE = True
-    SECURE_HSTS_SECONDS = 3600
-    SECURE_HSTS_INCLUDE_SUBDOMAINS = True  # Opsionale
-    SECURE_HSTS_PRELOAD = True             # Opsionale
-   
+# Logging: gabimet shfaqen në konsolën/log-un e hosting-ut
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'console': {'class': 'logging.StreamHandler'},
+    },
+    'root': {
+        'handlers': ['console'],
+        'level': 'WARNING',
+    },
+}
+
+
 BUSINESS_INFO = {
     'PHONE': '+355 68 398 0044',
     'PHONE_RAW': '+355683980044',

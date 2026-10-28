@@ -5,8 +5,12 @@ class FotoPunimiInline(admin.TabularInline):
     model = FotoPunimi
     extra = 3  # Numri i fushave boshe për shtim fotosh
 
-admin.site.register(Punim)
-
+@admin.register(Punim)
+class PunimAdmin(admin.ModelAdmin):
+    inlines = [FotoPunimiInline]
+    list_display = ('emri', 'kategoria', 'kryesor', 'data_krijimit')
+    list_filter = ('kategoria', 'kryesor')
+    
 @admin.register(MesazhKontakti)
 class MesazhKontaktiAdmin(admin.ModelAdmin):
     list_display = ('emri', 'telefoni', 'qyteti', 'data_krijimit')
