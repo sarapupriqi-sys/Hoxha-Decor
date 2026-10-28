@@ -2,23 +2,21 @@ from django.conf import settings
 from django.contrib import messages
 from django.core.mail import EmailMessage
 from django.shortcuts import redirect, render
+from .models import MesazhKontakti, Oferta  # Importojmë modelet e reja
 
 MAX_FILES = 5
 MAX_FILE = 8 * 1024 * 1024     # Maksimumi 8 MB për çdo foto individuale
-MAX_TOTAL = 15 * 1024 * 1024   # Maksimumi 15-20 MB total (nën kufirin e Gmail prej ~25 MB)
+MAX_TOTAL = 15 * 1024 * 1024   # Maksimumi 15-20 MB total
 ALLOWED = ('image/jpeg', 'image/png', 'image/webp')
 
 def home(request):
     return render(request, 'index.html')
 
-
 def about(request):
     return render(request, 'about.html')
 
-
 def punimet(request):
     return render(request, 'punimet.html')
-
 
 def procesi(request):
     return render(request, 'procesi.html')
@@ -33,10 +31,28 @@ def contact(request):
     if request.POST.get('website'):  # honeypot: vetëm robotët e plotësojnë
         return redirect('contact')
 
-    if not request.POST.get('emri', '').strip() or not request.POST.get('telefoni', '').strip():
+    emri = request.POST.get('emri', '').strip()
+    telefoni = request.POST.get('telefoni', '').strip()
+    
+    if not emri or not telefoni:
         messages.error(request, 'Plotësoni emrin dhe numrin e telefonit.')
         return redirect('contact')
 
+    # 1. Ruajtja në Bazën e të Dhënave (që të shfaqet në Django Admin)
+    try:
+        MesazhKontakti.objects.create(
+            emri=emri,
+            telefoni=telefoni,
+            email=request.POST.get('email', '').strip(),
+            qyteti=request.POST.get('qyteti', '').strip(),
+            adresa=request.POST.get('adresa', '').strip(),
+            prmasat=request.POST.get('prmasat', '').strip(),
+            mesazhi=request.POST.get('mesazhi', '').strip()
+        )
+    except Exception:
+        pass  # Vazhdon dërgimin e emailit edhe nëse ka ndonjë anomali të vogël në DB
+
+    # 2. Përgatitja dhe Dërgimi i Email-it (kodi yt ekzistues)
     lines = [
         f'{k}: {v.strip()}'
         for k, v in request.POST.items()
@@ -53,13 +69,11 @@ def contact(request):
     skipped = 0
     files = [f for _, group in request.FILES.lists() for f in group]
     
-    # Numërojmë sa foto u hoqën sepse i kalonin limitit të sasisë (MAX_FILES)
     if len(files) > MAX_FILES:
         skipped += len(files) - MAX_FILES
         files = files[:MAX_FILES]
 
     for f in files:
-        # Kontrollojmë formatin, madhësinë individuale dhe totalin
         if f.content_type not in ALLOWED or f.size > MAX_FILE or total + f.size > MAX_TOTAL:
             skipped += 1
             continue
@@ -69,7 +83,7 @@ def contact(request):
     try:
         email.send()
     except Exception:
-        messages.error(request, 'Kërkesa nuk u dërgua. Na shkruani në WhatsApp.')
+        messages.error(request, 'Kërkesa u ruajt, por dërgimi i emailit dështoi. Na kontaktoni në WhatsApp.')
     else:
         msg = "Faleminderit! Kërkesa u dërgua, do t'ju kthejmë përgjigje."
         if skipped > 0:
@@ -77,3 +91,24 @@ def contact(request):
         messages.success(request, msg)
         
     return redirect('contact')
+
+
+def oferta_view(request):
+    """Funksioni për të kapur kërkesat për ofertë nga modalja në faqe"""
+    if request.method == 'POST':
+        emri = request.POST.get('emri', '').strip()
+        telefoni = request.POST.get('telefoni', '').strip()
+        
+        if emri and telefoni:
+            Oferta.objects.create(
+                emri=emri,
+                telefoni=telefoni,
+                lloji_punimit=request.POST.get('lloji_punimit', '').strip(),
+                prmasat=request.POST.get('prmasat', '').strip(),
+                detaje=request.POST.get('detaje', '').strip()
+            )
+            messages.success(request, 'Kërkesa për ofertë u dërgua me sukses!')
+        else:
+            messages.error(request, 'Ju lutemi plotësoni emrin dhe telefonin.')
+            
+    return redirect('home')  # Ose kthehu te faqja ku ndodhej përdoruesi
