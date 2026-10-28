@@ -156,10 +156,16 @@ if (heroEl) {
     renderer.setSize(w, h);
   }
   window.addEventListener('resize', onResize);
-
+let isVisible = true;
+if ('IntersectionObserver' in window) {
+  new IntersectionObserver(entries => {
+    isVisible = entries[0].isIntersecting;
+  }, { threshold: 0 }).observe(container);
+}
   function animate() {
-    requestAnimationFrame(animate);
-    const p = heroProgress.p;
+  requestAnimationFrame(animate);
+  if (!isVisible) return;
+  const p = heroProgress.p;
 
     rootGroup.rotation.y += 0.0022; 
 
@@ -252,6 +258,15 @@ function sendOffer(e) {
     'Telefoni: ' + f.telefoni.value + '\n' +
     'Lloji: ' + f.lloji.value + '\n' +
     'Detaje: ' + (f.detaje.value || '-');
+  const data = new FormData();
+  data.append('emri', f.emri.value);
+  data.append('telefoni', f.telefoni.value);
+  data.append('lloji_punimit', f.lloji.value);
+  data.append('detaje', f.detaje.value);
+  const csrf = f.querySelector('[name=csrfmiddlewaretoken]');
+  if (csrf) data.append('csrfmiddlewaretoken', csrf.value);
+  fetch(f.dataset.saveUrl, { method: 'POST', body: data, credentials: 'same-origin', keepalive: true })
+    .catch(() => {});
   window.open('https://wa.me/355683980044?text=' + encodeURIComponent(msg), '_blank');
   f.reset();
   f.classList.add('hidden');
@@ -681,31 +696,3 @@ if (nav && window.scrollY > 40) nav.classList.add('nav-scrolled');
     v.addEventListener('ended', () => { if (card) card.classList.remove('is-playing'); });
   });
 })();
-// Optimizim për animacionet e Hero-s
-const heroSection = document.querySelector('.hero'); // Zëvendëso me klasën e saktë të hero-s tënde
-let animationId = null;
-let isHeroVisible = true;
-
-function renderAnimation() {
-    if (!isHeroVisible) return;
-    
-    // Këtu vendos logjikën e animacionit tënd (p.sh. draw() ose ndonjë lëvizje)
-    
-    animationId = requestAnimationFrame(renderAnimation);
-}
-
-if (heroSection) {
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            isHeroVisible = entry.isIntersecting;
-            if (isHeroVisible) {
-                cancelAnimationFrame(animationId);
-                renderAnimation(); // Rinise kur shfaqet
-            } else {
-                cancelAnimationFrame(animationId); // Ndaloje kur del nga ekrani
-            }
-        });
-    }, { threshold: 0.1 });
-
-    observer.observe(heroSection);
-}

@@ -8,14 +8,12 @@
 
     <title>{% block title %}Hoxha Decor - Dekorime & Punime Hekuri{% endblock %}</title>
     <meta name="description" content="{% block desc %}Hoxha Decor - Punishte hekuri, dekorime, punime metalike dhe mobilime me dizajn unik.{% endblock %}">
-    <link rel="canonical" href="{{ request.build_absolute_uri }}">
-
     <!-- Open Graph / Facebook / WhatsApp -->
     <meta property="og:type" content="website">
     <meta property="og:title" content="{% block og_title %}Hoxha Decor - Punishte Hekuri & Dekorime{% endblock %}">
     <meta property="og:description" content="{% block og_desc %}Punishte hekuri, dekorime, punime metalike dhe mobilime me dizajn unik.{% endblock %}">
     <meta property="og:image" content="{% block og_image %}{{ request.scheme }}://{{ request.get_host }}{% static 'image/og-cover.jpg' %}{% endblock %}">
-    <meta property="og:url" content="{{ request.build_absolute_uri }}">
+    <meta property="og:url" content="{{ request.scheme }}://{{ request.get_host }}{{ request.path }}">
 
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image">
@@ -31,7 +29,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400&family=Jost:wght@200;300;400;500;600&display=swap" rel="stylesheet">
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <!-- CSS -->
     <link rel="stylesheet" href="{% static 'stilizimi.css' %}">
 
@@ -57,9 +55,11 @@
     <!-- NAVBAR -->
     {% include "navbar.html" %}
 
-    <!-- PAGE CONTENT -->
+      <!-- PAGE CONTENT -->
+    <main id="main">
     {% block content %}
     {% endblock %}
+    </main>
 
     <!-- FOOTER -->
     {% include "footer.html" %}
@@ -71,8 +71,8 @@
 
         <h2 class="offer-title">Kërko Ofertë</h2>
         <p class="offer-text">Na thoni çfarë ju nevojitet dhe ju kthejmë përgjigje me çmim.</p>
-
-        <form id="offerForm" class="offer-form">
+        <form id="offerForm" class="offer-form" data-save-url="{% url 'oferta' %}">
+          {% csrf_token %}
           <input required name="emri" type="text" class="field" placeholder="Emri & Mbiemri">
           <input required name="telefoni" type="tel" class="field" placeholder="+355 6X XXX XXXX">
           <select required id="offerType" name="lloji" class="field">
@@ -106,9 +106,8 @@
     </div>
 
     <!-- External Libraries (Three.js & GSAP) -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+   {% block libs_js %}{% endblock %}
+  <script src="{% static 'java1.js' %}"></script>
 
     <!-- Main JavaScript -->
     <script src="{% static 'java1.js' %}"></script>
@@ -116,13 +115,10 @@
     <!-- Google Translate Script -->
     <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
   <!-- Butoni i lundrueshëm i WhatsApp -->
-<a href="https://wa.me/355683980044?text=Përshëndetje,%20dua%20të%20mësoj%20më shumë%20rreth%20punimeve%20tuaja." 
-   class="floating-whatsapp" 
-   target="_blank" 
-   rel="noopener" 
-   aria-label="Na shkruani në WhatsApp">
-   <i class="fab fa-whatsapp"></i>
-</a>
+   <a href="https://wa.me/355683980044?text=P%C3%ABrsh%C3%ABndetje%2C%20dua%20t%C3%AB%20m%C3%ABsoj%20m%C3%AB%20shum%C3%AB%20rreth%20punimeve%20tuaja."
+   class="floating-whatsapp" target="_blank" rel="noopener" aria-label="Na shkruani në WhatsApp">
+   <i class="fab fa-whatsapp" aria-hidden="true"></i>
+   </a>
     {% block extra_js %}
     {% endblock %}
 

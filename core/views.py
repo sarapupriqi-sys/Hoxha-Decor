@@ -29,8 +29,8 @@ def privatesia(request):
 def contact(request):
     if request.method != 'POST':
         return render(request, 'contact.html')
-
-    if request.POST.get('website'):  # honeypot: vetëm robotët e plotësojnë
+    
+    if request.POST.get('website') or request.POST.get('website_hp'):
         return redirect('contact')
 
     emri = request.POST.get('emri', '').strip()
@@ -42,14 +42,30 @@ def contact(request):
 
     saved = False
     try:
+        lloji = request.POST.get('lloji', '').strip()
+        lat = request.POST.get('lat', '').strip()
+        lng = request.POST.get('lng', '').strip()
+        
+        pjese = []
+        if lloji:
+            pjese.append(f'Lloji: {lloji}')
+        if lat and lng:
+            pjese.append(f'Vendndodhja: https://www.google.com/maps?q={lat},{lng}')
+            
+        mesazhi_input = request.POST.get('mesazhi', '').strip()
+        if mesazhi_input:
+            pjese.append(mesazhi_input)
+            
+        mesazhi_ruajtur = '\n'.join(pjese)
+
         MesazhKontakti.objects.create(
             emri=emri,
             telefoni=telefoni,
             email=request.POST.get('email', '').strip(),
             qyteti=request.POST.get('qyteti', '').strip(),
             adresa=request.POST.get('adresa', '').strip(),
-            prmasat=request.POST.get('prmasat', '').strip(),
-            mesazhi=request.POST.get('mesazhi', '').strip()
+            prmasat=request.POST.get('permasat', '').strip(),
+            mesazhi=mesazhi_ruajtur
         )
         saved = True
     except Exception:
@@ -59,7 +75,7 @@ def contact(request):
     lines = [
         f'{k}: {v.strip()}'
         for k, v in request.POST.items()
-        if k not in ('csrfmiddlewaretoken', 'website') and v.strip()
+        if k not in ('csrfmiddlewaretoken', 'website', 'website_hp') and v.strip()
     ]
     email = EmailMessage(
         subject='Kërkesë e re nga faqja: ' + ' '.join(request.POST.get('lloji', '').split())[:80],

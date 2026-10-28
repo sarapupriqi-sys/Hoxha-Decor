@@ -14,7 +14,7 @@ Hoxha Decor — Artizanat e Hekurit
 <!-- HERO -->
 <noscript>
   <div class="hero-fallback hero-fallback-bg">
-    <h1>Artizanat dhe Dekorime Hekuri</h1>
+    <p class="hero-title">Artizanat dhe Dekorime Hekuri</p>
     <p>Përjetoni elegancën e punimeve artistike të hekurit.</p>
   </div>
 </noscript>
@@ -235,10 +235,10 @@ Hoxha Decor — Artizanat e Hekurit
   <div class="container">
     <h2 class="section-title">Nga ideja te montimi</h2>
     <div class="home-process-grid">
-      <div class="home-step"><span class="home-step-number">01</span><h3 class="home-step-title">Konsultimi</h3><p class="home-step-text">Dëgjojmë idenë tuaj dhe marrim përmasat.</p></div>
-      <div class="home-step"><span class="home-step-number">02</span><h3 class="home-step-title">Materialet</h3><p class="home-step-text">Oferta e qartë, materiali dhe ngjyra së bashku.</p></div>
-      <div class="home-step"><span class="home-step-number">03</span><h3 class="home-step-title">Farkëtimi</h3><p class="home-step-text">Prehet, farkëtohet, saldohet dhe lyhet në punishte.</p></div>
-      <div class="home-step"><span class="home-step-number">04</span><h3 class="home-step-title">Montimi</h3><p class="home-step-text">E montojmë vetë dhe e dorëzojmë të përfunduar.</p></div>
+      <div class="home-step"><span class="home-step-number">01</span><h3 class="home-step-title">Ideja</h3><p class="home-step-text">Diskutojmë projektin dhe përmasat në terren.</p></div>
+      <div class="home-step"><span class="home-step-number">02</span><h3 class="home-step-title">Dizajni</h3><p class="home-step-text">Përcaktojmë stilin dhe materialet e duhura.</p></div>
+      <div class="home-step"><span class="home-step-number">03</span><h3 class="home-step-title">Përpunimi</h3><p class="home-step-text">Farkëtimi dhe trajtimi i hekurit në punishte.</p></div>
+      <div class="home-step"><span class="home-step-number">04</span><h3 class="home-step-title">Dorëzimi</h3><p class="home-step-text">Montimi përfundimtar në ambientin tuaj.</p></div>
     </div>
     <a href="{% url 'procesi' %}" class="link-underline link-underline-lg home-process-link">Shiko procesin e plotë</a>
   </div>
@@ -468,29 +468,19 @@ Hoxha Decor — Artizanat e Hekurit
         </div>
             <!-- Emri -->
             <div>
-
-                <label class="field-label">
-                    Emri & Mbiemri
-                </label>
-
-                <input
-                    required
-                    type="text"
-                    name="emri"
-                    class="field"
-                    placeholder="Emër Mbiemër">
-
+                <label for="h-emri" class="field-label">Emri & Mbiemri</label>
+                <input id="h-emri" required type="text" name="emri" class="field" placeholder="Emër Mbiemër">
             </div>
-
 
             <!-- Telefoni -->
             <div>
 
-                <label class="field-label">
+                <label for="h-telefoni" class="field-label">
                     Numri i Telefonit
                 </label>
 
                 <input
+                    id="h-telefoni"
                     required
                     type="tel"
                     name="telefoni"
@@ -503,11 +493,12 @@ Hoxha Decor — Artizanat e Hekurit
             <!-- Adresa -->
             <div>
 
-                <label class="field-label">
+                <label for="h-adresa" class="field-label">
                     Adresa
                 </label>
 
                 <input
+                    id="h-adresa"
                     required
                     type="text"
                     name="adresa"
@@ -520,9 +511,19 @@ Hoxha Decor — Artizanat e Hekurit
             <!-- Lloji -->
             <div>
 
-                <label class="field-label">
+                <label for="h-lloji" class="field-label">
                     Lloji i Punimit
                 </label>
+
+                <input
+                    id="h-lloji"
+                    required
+                    type="text"
+                    name="lloji"
+                    class="field"
+                    placeholder="P.sh. Kangjella, Shkallë, etj.">
+
+            </div>
 
 <select required
         name="lloji"
@@ -549,16 +550,11 @@ Hoxha Decor — Artizanat e Hekurit
     <option value="Tjetër">Tjetër</option>
 
 </select>
-            </div>
-
-
-            <!-- Mesazhi -->
+<!-- Mesazhi -->
             <div class="form-wide">
 
                 <label class="field-label-caps">
-
                     Detaje shtesë (opsionale)
-
                 </label>
 
                 <textarea
@@ -574,9 +570,7 @@ Hoxha Decor — Artizanat e Hekurit
             <div class="form-wide home-photo">
 
                 <label class="field-label-caps">
-
                     Bashkangjit Foto Reference
-
                 </label>
 
 
@@ -597,9 +591,7 @@ Hoxha Decor — Artizanat e Hekurit
 
 
                     <span id="file-name" class="home-file-name">
-
                         Asnjë skedar i zgjedhur
-
                     </span>
 
                 </div>
@@ -616,5 +608,10 @@ Hoxha Decor — Artizanat e Hekurit
 
     </div>
 </section>
-
+{% block libs_js %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+{% endblock %}
+{% block extra_css %}{% include 'jsonld_localbusiness.html' %}{% endblock %}
 {% endblock %}
