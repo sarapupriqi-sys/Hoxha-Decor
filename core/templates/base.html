@@ -73,6 +73,10 @@
         <p class="offer-text">Na thoni çfarë ju nevojitet dhe ju kthejmë përgjigje me çmim.</p>
         <form id="offerForm" class="offer-form" data-save-url="{% url 'oferta' %}">
           {% csrf_token %}
+          <!-- Honeypot kundër spam-it (njerëzit nuk e shohin) -->
+          <div class="honeypot" aria-hidden="true">
+            <input type="text" name="website_hp" tabindex="-1" autocomplete="off">
+          </div>
           <input required name="emri" type="text" class="field" placeholder="Emri & Mbiemri">
           <input required name="telefoni" type="tel" class="field" placeholder="+355 6X XXX XXXX">
           <select required id="offerType" name="lloji" class="field">
@@ -80,7 +84,7 @@
             <option value="Portë">Portë</option>
             <option value="Parmak">Parmak</option>
             <option value="Kangjella">Kangjella</option>
-            <option value="Dritare & Grila">Dritare & Grila</option>
+            <option value="Dritare & Grila">Dritare &amp; Grila</option>
             <option value="Derë e brendshme">Derë e brendshme</option>
             <option value="Shkallë">Shkallë</option>
             <option value="Mobilje me Porosi">Mobilje me Porosi</option>
@@ -107,7 +111,6 @@
 
     <!-- External Libraries (Three.js & GSAP) -->
    {% block libs_js %}{% endblock %}
-  <script src="{% static 'java1.js' %}"></script>
 
     <!-- Main JavaScript -->
     <script src="{% static 'java1.js' %}"></script>

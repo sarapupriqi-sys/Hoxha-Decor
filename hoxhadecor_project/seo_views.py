@@ -3,7 +3,7 @@ from django.urls import reverse
 
 # Emrat e URL-ve (nga urls.py) që duhet të dalin në sitemap.
 # Kur shton një faqe të re publike (p.sh. 'privatesia'), shtoje këtu.
-SITEMAP_URL_NAMES = ['home', 'about', 'punimet', 'procesi', 'contact']
+SITEMAP_URL_NAMES = ['home', 'about', 'punimet', 'procesi', 'contact','privatesia']
 
 
 def robots_txt(request):

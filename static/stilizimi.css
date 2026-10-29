@@ -259,12 +259,11 @@ textarea {
   display: inline-block;
   padding: 0.6rem 2rem;
 }
-@media (max-width: 767.98px) {
+@media (min-width: 768px) {
   .form-wide {
-    grid-column: auto;
+    grid-column: 1 / -1;
   }
 }
-
 /* ---------- NAVBAR ---------- */
 /* Kur ulemi poshtë, shiriti i sipërm rrëshqet jashtë ekranit (pa ndryshuar lartësinë e menusë),
    dhe menuja merr sfond që përmbajtja të mos kalojë pas saj. */
@@ -2583,4 +2582,121 @@ select.field option {
   .hero-title { font-size: 3.5rem; }
   .hero-sub { margin-top: 1.25rem; font-size: 14px; line-height: 1.55; }
   .hero-cta { margin-top: 1.5rem; }
+}
+/* Container-i kryesor që mbron nga mbivendosja me header-in fixed */
+.privacy-content {
+    max-width: 880px;
+    margin: 0 auto;
+    padding: 140px 24px 60px 24px; 
+    color: #e2e8f0;
+    line-height: 1.75;
+    font-size: 1rem;
+}
+
+/* Titulli kryesor H1 */
+.privacy-content h1 {
+    color: #d4af37; 
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 8px;
+    letter-spacing: -0.5px;
+}
+
+.privacy-content .subtitle {
+    font-size: 0.9rem;
+    color: #94a3b8;
+    margin-bottom: 35px;
+    font-style: italic;
+    border-bottom: 1px solid rgba(212, 175, 55, 0.2); 
+    padding-bottom: 15px;
+}
+
+.privacy-content h2 {
+    color: #f1f5f9;
+    font-size: 1.35rem;
+    font-weight: 600;
+    margin-top: 35px;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+}
+
+.privacy-content h2::before {
+    content: '';
+    display: inline-block;
+    width: 4px;
+    height: 18px;
+    background-color: #d4af37;
+    margin-right: 10px;
+    border-radius: 2px;
+}
+
+/* Paragrafët */
+.privacy-content p {
+    margin-bottom: 16px;
+    color: #cbd5e1;
+}
+.privacy-content code {
+    background-color: rgba(255, 255, 255, 0.08);
+    color: #d4af37;
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-family: monospace;
+    font-size: 0.9em;
+}
+
+.privacy-content ul {
+    list-style: none;
+    padding-left: 0;
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
+
+.privacy-content li {
+    position: relative;
+    padding-left: 24px;
+    margin-bottom: 10px;
+    color: #cbd5e1;
+}
+
+.privacy-content li::before {
+    content: '•';
+    color: #d4af37; 
+    font-weight: bold;
+    font-size: 1.2rem;
+    position: absolute;
+    left: 6px;
+    top: -2px;
+}
+
+.privacy-content strong {
+    color: #ffffff;
+    font-weight: 600;
+}
+
+.privacy-content a {
+    color: #d4af37;
+    text-decoration: none;
+    transition: color 0.2s ease, text-decoration 0.2s ease;
+}
+
+.privacy-content a:hover {
+    color: #f3e5ab;
+    text-decoration: underline;
+}
+
+@media (max-width: 768px) {
+    .privacy-content {
+        padding-top: 110px; 
+        padding-left: 16px;
+        padding-right: 16px;
+    }
+    
+    .privacy-content h1 {
+        font-size: 1.8rem;
+    }
+
+    .privacy-content h2 {
+        font-size: 1.15rem;
+    }
 }

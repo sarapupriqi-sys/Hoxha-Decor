@@ -209,10 +209,14 @@ if ('IntersectionObserver' in window) {
     track.scrollLeft = startScroll - dx;
   });
   track.addEventListener('wheel', (e) => {
-    if (Math.abs(e.deltaY) > Math.abs(e.deltaX)) {
-      e.preventDefault();
-      track.scrollLeft += e.deltaY;
-    }
+    if (Math.abs(e.deltaY) <= Math.abs(e.deltaX)) return;
+    // Kap rrotën vetëm sa kohë karuseli mund të lëvizë; përndryshe faqja vazhdon scroll-in
+    const max = track.scrollWidth - track.clientWidth;
+    const atStart = track.scrollLeft <= 0 && e.deltaY < 0;
+    const atEnd = track.scrollLeft >= max - 1 && e.deltaY > 0;
+    if (max <= 0 || atStart || atEnd) return;
+    e.preventDefault();
+    track.scrollLeft += e.deltaY;
   }, { passive: false });
 })();
 
@@ -263,6 +267,7 @@ function sendOffer(e) {
   data.append('telefoni', f.telefoni.value);
   data.append('lloji_punimit', f.lloji.value);
   data.append('detaje', f.detaje.value);
+  if (f.website_hp) data.append('website_hp', f.website_hp.value);  // honeypot
   const csrf = f.querySelector('[name=csrfmiddlewaretoken]');
   if (csrf) data.append('csrfmiddlewaretoken', csrf.value);
   fetch(f.dataset.saveUrl, { method: 'POST', body: data, credentials: 'same-origin', keepalive: true })
@@ -541,7 +546,8 @@ if (nav && window.scrollY > 40) nav.classList.add('nav-scrolled');
   if (!form) return;
 
   const MAX_FILES = 5;
-  const MAX_SIZE = 8 * 1024 * 1024;
+  const MAX_SIZE  = 8 * 1024 * 1024;    // njësoj si MAX_FILE te views.py
+  const MAX_TOTAL = 15 * 1024 * 1024;  // njësoj si MAX_TOTAL te views.py
 
   const input = document.getElementById('f-foto');
   const dropzone = document.getElementById('dropzone');
@@ -603,6 +609,9 @@ if (nav && window.scrollY > 40) nav.classList.add('nav-scrolled');
       if (f.size > MAX_SIZE) { msgs.push(f.name + ': e kalon 8 MB.'); return; }
       if (files.some(x => x.name === f.name && x.size === f.size)) return;
       if (files.length >= MAX_FILES) { msgs.push('Mund të ngarkoni deri në 5 foto.'); return; }
+      if (files.reduce((s, x) => s + x.size, 0) + f.size > MAX_TOTAL) {
+       msgs.push('Fotot nuk mund të kalojnë mbi 15 MB.'); return;
+      }
       files.push(f);
     });
     if (err) err.textContent = Array.from(new Set(msgs)).join(' ');

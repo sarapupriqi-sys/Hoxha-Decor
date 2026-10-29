@@ -91,7 +91,6 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
-                # Çaktivizo komentin vetëm pasi të krijosh core/context_processors.py
                 # (do ta vendosim në Fazën 3 nëse templates e përdorin BUSINESS_INFO):
                 # 'core.context_processors.business_info',
             ],
@@ -135,7 +134,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/6.1/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'sq'
 
 TIME_ZONE = 'Europe/Tirane'
 
@@ -193,7 +192,7 @@ BUSINESS_INFO = {
     'PHONE_RAW': '+355683980044',
     'EMAIL': 'hoxhadecor@gmail.com',
     'ADDRESS': 'Fushë-Krujë, Shqipëri',
-    'HOURS': 'E Hënë – E Shtunë: 08:00 – 18:00',
+    'HOURS': 'E Hënë – E Shtunë: 08:00 – 19:00',
     'WHATSAPP_URL': 'https://wa.me/355683980044',
-    'TIKTOK_URL': 'https://www.tiktok.com/@saldime.tig',
+    'TIKTOK_URL': 'https://www.tiktok.com/@saldime.tig?_r=1&_t=ZS-9AxbyMXQUde',
 }

@@ -2,8 +2,6 @@
 {% comment %}
   Të dhëna të strukturuara (JSON-LD) për Google. Përfshije në <head> me:
   {% block extra_css %}{% include 'jsonld_localbusiness.html' %}{% endblock %}
-  Të konfirmosh para publikimit: orari, emaili, telefoni. "sameAs" (TikTok) është lënë jashtë
-  sepse faqja ka dy llogari të ndryshme; shtoje pasi të vendosësh njërën.
 {% endcomment %}
 <script type="application/ld+json">
 {
@@ -16,6 +14,7 @@
   "image": "{{ request.scheme }}://{{ request.get_host }}{% static 'image/farkim-spirale.jpeg' %}",
   "telephone": "+355683980044",
   "email": "hoxhadecor@gmail.com",
+  "sameAs": ["https://www.tiktok.com/@saldime.tig"],
   "foundingDate": "2013",
   "address": {
     "@type": "PostalAddress",
